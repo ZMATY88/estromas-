@@ -1,37 +1,99 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio + ESTROMAS</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <nav>
+      <div class="logo">Estromas</div>
+      <!-- Barra de navegación -->
+      <ul class="nav-links">
+        <li><a href="#el-estudio">Studio</a></li>
+        <li><a href="#proyectos">Projects</a></li>
+        <li><a href="#contacto">Contact</a></li>
+        <li><a href="#servicios">Services</a></li>
+      </ul>  <!-- Cerramos la lista -->
+    </nav>
+  </header>
 
-    <!-- CONTENEDOR GENERAL -->
-    <div class="container">
+  <!-- Carrusel de imagenes -->
+  <div class="carousel">
 
-        <!-- LOGO Y ENCABEZADO -->
-        <header>
-            <h1 class="logo">Studio + ESTROMAS</h1>
-        </header>
+  <!-- Radios para controlar la imagen visible -->
+  <input type="radio" name="slides" id="slide1" checked>
+  <input type="radio" name="slides" id="slide2">
+  <input type="radio" name="slides" id="slide3">
+  <input type="radio" name="slides" id="slide4">
+  <input type="radio" name="slides" id="slide5">
 
-        <!-- CUERPO PRINCIPAL EN DOS COLUMNAS -->
-        <main class="grid">
-            
-            <!-- COLUMNA IZQUIERDA -->
-            <div class="col izquierda">
-                <section class="contacto">
-                    <h2>Oficina</h2>
-                    <p>Calle larga 6-13 y Hermano Miguel</p>
-                    <p>Casa de la escalinta</p>
-                    <p>Oficina 12</p>
-                    <p>Cuenca, EC</p>
-                </section>
+  <!-- Contenedor de slides -->
+  <div class="slides">
+    <div class="slide"><img src="proyectos\t01.png" alt="Imagen 1"></div>
+    <div class="slide"><img src="proyectos\b01.jpg" alt="Imagen 2"></div>
+    <div class="slide"><img src="proyectos\D5 Render - D5 Render added a new photo_.jpg" alt="Imagen 3"></div>
+    <div class="slide"><img src="proyectos\Contemporary Residences _ BGNR Architects x Kantor GG.jpg" alt="Imagen 4"></div>
+    <div class="slide"><img src="proyectos\D5 Render - D5 Render added a new photo_.jpg" alt="Imagen 5"></div>
+  </div>
 
-                <section class="trabajo">
-                    <h2>Trabaja con nosotros</h2>
-                    <ul>
-                        <li>Pasantías</li>
-                        <li>Residencias</li>
-                        <
+  <!-- Botones manuales (puntos) -->
+  <div class="navigation-manual">
+    <label for="slide1" class="manual-btn"></label>
+    <label for="slide2" class="manual-btn"></label>
+    <label for="slide3" class="manual-btn"></label>
+    <label for="slide4" class="manual-btn"></label>
+    <label for="slide5" class="manual-btn"></label>
+  </div>
+
+  <!-- Flechas para cambiar de imagen -->
+  <div class="arrows">
+    <!-- Flecha anterior -->
+  <label for="slide5" class="prev prev1">&#10094;</label>
+  <label for="slide1" class="prev prev2">&#10094;</label>
+  <label for="slide2" class="prev prev3">&#10094;</label>
+  <label for="slide3" class="prev prev4">&#10094;</label>
+  <label for="slide4" class="prev prev5">&#10094;</label>
+
+  <!-- Flecha siguiente -->
+  <label for="slide2" class="next next1">&#10095;</label>
+  <label for="slide3" class="next next2">&#10095;</label>
+  <label for="slide4" class="next next3">&#10095;</label>
+  <label for="slide5" class="next next4">&#10095;</label>
+  <label for="slide1" class="next next5">&#10095;</label>
+  </div>
+
+</div>
+  <!-- Flechas para cambiar de imagen -->
+  <div class="arrows">
+    <!-- Flecha anterior -->
+    <label for="slide5" class="prev prev1">&#10094;</label>
+    <label for="slide1" class="prev prev2">&#10094;</label>
+    <label for="slide2" class="prev prev3">&#10094;</label>
+    <label for="slide3" class="prev prev4">&#10094;</label>
+    <label for="slide4" class="prev prev5">&#10094;</label>
+
+    <!-- Flecha siguiente -->
+    <label for="slide2" class="next next1">&#10095;</label>
+    <label for="slide3" class="next next2">&#10095;</label>
+    <label for="slide4" class="next next3">&#10095;</label>
+    <label for="slide5" class="next next4">&#10095;</label>
+    <label for="slide1" class="next next5">&#10095;</label>
+  </div>
+
+</div>
+
+<script>
+  const slides = 5;
+  let current = 1;
+
+  setInterval(() => {
+    document.getElementById(`slide${current}`).checked = false;
+    current = current < slides ? current + 1 : 1;
+    document.getElementById(`slide${current}`).checked = true;
+  }, 10000);
+</script>
+</body>
+</html>

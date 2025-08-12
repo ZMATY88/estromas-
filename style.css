@@ -1,96 +1,200 @@
-/* RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    font-family: 'Futura', sans-serif;
 }
 
-/* ESTILOS GENERALES */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fff; /* Cambiar si el PDF usa color de fondo */
-    color: #333;
+    line-height: 1.6;
+    font-family: 'Futura', sans-serif; /* Puedes dejar la que prefieras */
 }
 
-/* CONTENEDOR PRINCIPAL */
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* LOGO / ENCABEZADO */
 header {
-    text-align: left;
-    padding-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    background-color: #000; /* fondo negro */
 }
 
 .logo {
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 2.5rem;
+    font-weight: 700; /* Cambié xxxx a 700 */
+    color: #ffffff;
 }
 
-/* ESTRUCTURA EN DOS COLUMNAS */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-}
-
-/* SECCIONES DE TEXTO */
-h2 {
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-
-p, li, blockquote {
-    margin-bottom: 8px;
-}
-
-ul {
+.nav-links {
     list-style: none;
-}
-
-.subtitulo {
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
-/* BLOQUES DE TEXTO CON ESTILO */
-.mensaje {
-    background-color: #f5f5f5; /* Ajustar al diseño del PDF */
-    padding: 20px;
-    border-radius: 4px;
-}
-
-blockquote {
-    font-style: italic;
-    color: #555;
-}
-
-/* CARRUSEL */
-.carrusel-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    margin-top: 20px;
-}
-
-.carrusel {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    gap: 2.5rem;
 }
 
-.carrusel img {
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: clamp(14px, 1.8vw, 30px);
+}
+
+/* Carrusel */
+
+.carousel {
+    width: 100vw;       /* Ancho total de la ventana */
+    max-width: none;    /* Sin límite de ancho */
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;   /* Sin bordes redondeados */
+    box-shadow: none;   /* Sin sombra */
+    margin: 0;          /* Sin margen */
+}
+
+.carousel input {
+    display: none;      /* Ocultar los radios */
+}
+
+.slides {
+    display: flex;
+    width: 500%;        /* 5 imágenes */
+    transition: 0.6s ease;
+}
+
+.slide {
+    width: 20%;         /* Cada slide ocupa 1/5 */
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;        /* Imagen ocupa todo el ancho del slide */
+    height: 800px;      /* Aquí defines la altura, cambia este valor */
+    object-fit: cover;  /* Cubre sin deformar */
+}
+
+/* Movimiento de slides según radio seleccionado */
+#slide1:checked ~ .slides {
+    transform: translateX(0);
+}
+#slide2:checked ~ .slides {
+    transform: translateX(-20%);
+}
+#slide3:checked ~ .slides {
+    transform: translateX(-40%);
+}
+#slide4:checked ~ .slides {
+    transform: translateX(-60%);
+}
+#slide5:checked ~ .slides {
+    transform: translateX(-80%);
+}
+
+/* Botones manuales (puntos) */
+.navigation-manual {
+    position: absolute;
     width: 100%;
-    max-width: 500px; /* Ajusta al tamaño en el PDF */
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn {
+    border: 2px solid #ffffff;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 0 8px;
+    background: rgba(255,255,255,0.5);
+}
+
+.manual-btn:hover {
+    background: #fff;
+}
+
+/* Flechas para navegar */
+/* Ocultamos todas las flechas por defecto */
+.arrows label {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+    z-index: 10;
+}
+
+.arrows label:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+/* Mostramos flechas según slide activo */
+
+/* Slide 1 */
+#slide1:checked ~ .arrows .prev1,
+#slide1:checked ~ .arrows .next1 {
     display: block;
 }
+.arrows .prev1 {
+    left: 10px;
+}
+.arrows .next1 {
+    right: 10px;
+}
 
-/* FOOTER */
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 10px;
-    border-top: 1px solid #ccc;
+/* Slide 2 */
+#slide2:checked ~ .arrows .prev2,
+#slide2:checked ~ .arrows .next2 {
+    display: block;
+}
+.arrows .prev2 {
+    left: 10px;
+}
+.arrows .next2 {
+    right: 10px;
+}
+
+/* Slide 3 */
+#slide3:checked ~ .arrows .prev3,
+#slide3:checked ~ .arrows .next3 {
+    display: block;
+}
+.arrows .prev3 {
+    left: 10px;
+}
+.arrows .next3 {
+    right: 10px;
+}
+
+/* Slide 4 */
+#slide4:checked ~ .arrows .prev4,
+#slide4:checked ~ .arrows .next4 {
+    display: block;
+}
+.arrows .prev4 {
+    left: 10px;
+}
+.arrows .next4 {
+    right: 10px;
+}
+
+/* Slide 5 */
+#slide5:checked ~ .arrows .prev5,
+#slide5:checked ~ .arrows .next5 {
+    display: block;
+}
+.arrows .prev5 {
+    left: 10px;
+}
+.arrows .next5 {
+    right: 10px;
 }
