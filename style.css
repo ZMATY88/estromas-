@@ -1,78 +1,96 @@
-/* Reseteo de estilos básicos para consistencia */
+/* RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilo general del body */
+/* ESTILOS GENERALES */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    background-color: #fff; /* Cambiar si el PDF usa color de fondo */
     color: #333;
 }
 
-/* Encabezado con fondo y menú */
-header {
-    background-color: #222;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* CONTENEDOR PRINCIPAL */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
-header .logo {
+/* LOGO / ENCABEZADO */
+header {
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.logo {
+    font-size: 2em;
     font-weight: bold;
+}
+
+/* ESTRUCTURA EN DOS COLUMNAS */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+}
+
+/* SECCIONES DE TEXTO */
+h2 {
+    margin-bottom: 10px;
     font-size: 1.2em;
 }
 
-nav ul {
+p, li, blockquote {
+    margin-bottom: 8px;
+}
+
+ul {
     list-style: none;
-    display: flex;
-    gap: 15px;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
+.subtitulo {
+    font-style: italic;
+    margin-bottom: 20px;
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Secciones */
-section {
+/* BLOQUES DE TEXTO CON ESTILO */
+.mensaje {
+    background-color: #f5f5f5; /* Ajustar al diseño del PDF */
     padding: 20px;
-    max-width: 800px;
-    margin: auto;
-}
-
-h2 {
-    margin-bottom: 10px;
-    color: #444;
-}
-
-/* Bloque de mensaje */
-#mensaje {
-    background-color: #f5f5f5;
-    padding: 30px;
-    margin-top: 20px;
-    text-align: center;
+    border-radius: 4px;
 }
 
 blockquote {
     font-style: italic;
-    color: #666;
-    margin-top: 15px;
+    color: #555;
 }
 
-/* Footer */
-footer {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 10px;
+/* CARRUSEL */
+.carrusel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
     margin-top: 20px;
+}
+
+.carrusel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel img {
+    width: 100%;
+    max-width: 500px; /* Ajusta al tamaño en el PDF */
+    display: block;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
 }
