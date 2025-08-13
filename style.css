@@ -264,7 +264,7 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   margin: 100px auto; /* centrado horizontal y espacio arriba/abajo */
   height: 600px; /* se ajusta al contenido */
   gap: 20px; /* espacio entre columnas */
-  background-color: #ffffff; /* nuevo color de fondo */
+  background-color: #000000; /* nuevo color de fondo */
   padding: 20px; /* opcional, para que no quede pegado a los bordes */
 }
 
@@ -287,13 +287,15 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   margin-top: 10px;
 }
 
+
+
 .card-texto h3 {
   font-size: 1.5rem;
   margin-bottom: 5px;
-  color: #000000; /* título amarillo */
+  color: #ffffff; /* título amarillo */
 }
 
 .card-texto p {
   font-size: 1rem;
-  color: #000000;
+  color: #ffffff;
 }
