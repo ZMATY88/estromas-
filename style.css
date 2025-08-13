@@ -260,12 +260,13 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   display: flex;
   justify-content: space-between;
   align-items: center; /* centra verticalmente las cards */
-  width: 100%; /* igual que el video-container */
-  margin: 100px auto; /* centrado horizontal y espacio arriba/abajo */
-  height: 600px; /* se ajusta al contenido */
+  width: 100%; /* ocupa todo el ancho */
+  margin: 100px auto; /* espacio arriba y abajo */
+  height: 600px; /* altura de la sección */
   gap: 20px; /* espacio entre columnas */
-  background-color: #000000; /* nuevo color de fondo */
-  padding: 20px; /* opcional, para que no quede pegado a los bordes */
+  background-color: #000000; /* color de fondo */
+  padding: 20px; /* espacio interno */
+  box-sizing: border-box;
 }
 
 .card {
@@ -281,21 +282,38 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   height: auto;
   object-fit: cover;
   border-radius: 8px;
+  aspect-ratio: 16 / 9; /* mantiene proporción dinámica */
 }
 
 .card-texto {
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-
-
 .card-texto h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* tamaño dinámico según ancho de ventana */
   margin-bottom: 5px;
-  color: #ffffff; /* título amarillo */
+  color: #ffffff; /* título visible sobre fondo negro */
 }
 
 .card-texto p {
-  font-size: 1rem;
-  color: #ffffff;
+  font-size: clamp(0.8rem, 1.5vw, 1rem); /* tamaño dinámico según ancho de ventana */
+  color: #ffffff; /* subtítulo visible sobre fondo negro */
+}
+
+/* Responsivo: apilar cards en móviles */
+@media screen and (max-width: 768px) {
+  .seccion-tres {
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* altura automática para contenido apilado */
+  }
+
+  .card {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
 }
