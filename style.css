@@ -231,35 +231,12 @@ width: 100vw;           /* siempre ocupa el ancho completo */
 
 
 
-@media screen and (max-width: 430px) {
-    
-    nav {
-        flex-direction: left;
-        padding: 1rem;
-    }
-    .nav-links {
-        flex-direction: right;
-        gap: 0.4rem;
-        margin-top: 0rem;
-    }
-    .logo {
-        font-size: 1.4rem;  /* tamaño reducido en móviles */
-    }
-    
-    .nav-links a {
-        font-size: 0.7rem;  /* tamaño reducido en móviles */
-    }
 
-    .slide img {
-        height: 300px;  /* altura reducida en móviles */
-    }
-
-    
-}
 .seccion-tres {
   display: flex;
   justify-content: space-between;
   align-items: center; /* centra verticalmente las cards */
+  align-items: stretch; /* estira todas las cards a la misma altura */
   width: 100%; /* ocupa todo el ancho */
   margin: 100px auto; /* espacio arriba y abajo */
   height: 600px; /* altura de la sección */
@@ -355,3 +332,28 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   }
 }
 
+@media screen and (max-width: 430px) {
+    
+    nav {
+        flex-direction: left;
+        padding: 1rem;
+    }
+    .nav-links {
+        flex-direction: right;
+        gap: 0.4rem;
+        margin-top: 0rem;
+    }
+    .logo {
+        font-size: 1.4rem;  /* tamaño reducido en móviles */
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem;  /* tamaño reducido en móviles */
+    }
+
+    .slide img {
+        height: 300px;  /* altura reducida en móviles */
+    }
+
+    
+}
