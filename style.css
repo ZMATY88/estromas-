@@ -317,3 +317,66 @@ width: 100vw;           /* siempre ocupa el ancho completo */
     margin-bottom: 20px;
   }
 }
+@media screen and (max-width: 768px) {
+  .seccion-tres {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+
+  .card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .card-texto h3 {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .card-texto p {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+  }
+
+  .rectangulo,
+  .rectangulo2 {
+    height: auto;
+    padding: 50px 20px;
+    font-size: clamp(16pt, 6vw, 24pt);
+  }
+
+  .video-container {
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 430px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-top: 0;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .nav-links a {
+        font-size: 0.7rem;
+    }
+
+    .slide img {
+        height: auto;
+        max-height: 300px;
+    }
+}
