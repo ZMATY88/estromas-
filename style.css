@@ -2,13 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    font-family: 'Futura', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     background-color: #000000;
     line-height: 1.6;
-    font-family: 'Futura', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 header {
@@ -21,7 +23,6 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    margin: 0 auto;
     background-color: #000;
 }
 
@@ -47,7 +48,6 @@ nav {
 /* Carrusel */
 .carousel {
     width: 100vw;
-    max-width: none;
     position: relative;
     overflow: hidden;
     margin: 0;
@@ -142,7 +142,6 @@ nav {
 
 .destacado { font-weight: bold; }
 
-/* Ajuste de texto responsivo en rectángulos solo móviles */
 @media screen and (max-width: 768px) {
   .rectangulo p,
   .rectangulo2 p {
@@ -176,12 +175,11 @@ nav {
 .seccion-tres {
   display: flex;
   justify-content: space-between;
-  align-items: stretch; /* todas las cards con misma altura */
+  align-items: stretch;
   width: 100%;
   gap: 20px;
   padding: 20px;
   background-color: #000000;
-  box-sizing: border-box;
   margin: 100px auto;
   height: 600px;
 }
@@ -202,7 +200,6 @@ nav {
 .card-texto {
   margin-top: 10px;
   text-align: center;
-   flex-shrink: 0
 }
 
 .card-texto h3 {
@@ -222,43 +219,28 @@ nav {
     flex-direction: column;
     height: auto;
   }
-
   .card {
     flex: 1 1 100%;
     margin-bottom: 20px;
   }
-
-  .card img {
-    flex: unset;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
-
   .card-texto h3 {
     font-size: clamp(1rem, 4vw, 1.5rem);
   }
-
   .card-texto p {
     font-size: clamp(0.8rem, 3vw, 1rem);
   }
-
   .rectangulo,
   .rectangulo2 {
     height: auto;
     padding: 50px 20px;
     font-size: clamp(16pt, 6vw, 24pt);
   }
-
   .video-container {
     height: auto;
   }
 }
 
-
-
-
 @media screen and (max-width: 430px) {
-    
     nav {
         flex-direction: left;
         padding: 1rem;
@@ -269,16 +251,12 @@ nav {
         margin-top: 0rem;
     }
     .logo {
-        font-size: 1.4rem;  /* tamaño reducido en móviles */
+        font-size: 1.4rem;
     }
-    
     .nav-links a {
-        font-size: 0.7rem;  /* tamaño reducido en móviles */
+        font-size: 0.7rem;
     }
-
     .slide img {
-        height: 300px;  /* altura reducida en móviles */
+        height: 300px;
     }
-
-    
 }

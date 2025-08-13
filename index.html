@@ -4,150 +4,120 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document</title>
+
+  <!-- Fuente consistente en todos los equipos -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <nav>
       <div class="logo">Estromas</div>
-      <!-- Barra de navegación -->
       <ul class="nav-links">
         <li><a href="#el-estudio">Studio</a></li>
         <li><a href="#proyectos">Projects</a></li>
         <li><a href="#contacto">Contact</a></li>
         <li><a href="#servicios">Services</a></li>
-      </ul>  <!-- Cerramos la lista -->
+      </ul>
     </nav>
   </header>
 
-  <!-- Carrusel de imagenes -->
+  <!-- Carrusel de imágenes -->
   <div class="carousel">
+    <input type="radio" name="slides" id="slide1" checked>
+    <input type="radio" name="slides" id="slide2">
+    <input type="radio" name="slides" id="slide3">
+    <input type="radio" name="slides" id="slide4">
+    <input type="radio" name="slides" id="slide5">
 
-  <!-- Radios para controlar la imagen visible -->
-  <input type="radio" name="slides" id="slide1" checked>
-  <input type="radio" name="slides" id="slide2">
-  <input type="radio" name="slides" id="slide3">
-  <input type="radio" name="slides" id="slide4">
-  <input type="radio" name="slides" id="slide5">
+    <div class="slides">
+      <div class="slide"><img src="proyectos/t01.png" alt="Imagen 1"></div>
+      <div class="slide"><img src="proyectos/b01.jpg" alt="Imagen 2"></div>
+      <div class="slide"><img src="proyectos/D5 Render - D5 Render added a new photo_.jpg" alt="Imagen 3"></div>
+      <div class="slide"><img src="proyectos/Contemporary Residences _ BGNR Architects x Kantor GG.jpg" alt="Imagen 4"></div>
+      <div class="slide"><img src="proyectos/D5 Render - D5 Render added a new photo_.jpg" alt="Imagen 5"></div>
+    </div>
 
-  <!-- Contenedor de slides -->
-  <div class="slides">
-    <div class="slide"><img src="proyectos\t01.png" alt="Imagen 1"></div>
-    <div class="slide"><img src="proyectos\b01.jpg" alt="Imagen 2"></div>
-    <div class="slide"><img src="proyectos\D5 Render - D5 Render added a new photo_.jpg" alt="Imagen 3"></div>
-    <div class="slide"><img src="proyectos\Contemporary Residences _ BGNR Architects x Kantor GG.jpg" alt="Imagen 4"></div>
-    <div class="slide"><img src="proyectos\D5 Render - D5 Render added a new photo_.jpg" alt="Imagen 5"></div>
-  </div>
+    <div class="navigation-manual">
+      <label for="slide1" class="manual-btn"></label>
+      <label for="slide2" class="manual-btn"></label>
+      <label for="slide3" class="manual-btn"></label>
+      <label for="slide4" class="manual-btn"></label>
+      <label for="slide5" class="manual-btn"></label>
+    </div>
 
-  <!-- Botones manuales (puntos) -->
-  <div class="navigation-manual">
-    <label for="slide1" class="manual-btn"></label>
-    <label for="slide2" class="manual-btn"></label>
-    <label for="slide3" class="manual-btn"></label>
-    <label for="slide4" class="manual-btn"></label>
-    <label for="slide5" class="manual-btn"></label>
-  </div>
+    <div class="arrows">
+      <label for="slide5" class="prev prev1">&#10094;</label>
+      <label for="slide1" class="prev prev2">&#10094;</label>
+      <label for="slide2" class="prev prev3">&#10094;</label>
+      <label for="slide3" class="prev prev4">&#10094;</label>
+      <label for="slide4" class="prev prev5">&#10094;</label>
 
-  <!-- Flechas para cambiar de imagen -->
-  <div class="arrows">
-    <!-- Flecha anterior -->
-  <label for="slide5" class="prev prev1">&#10094;</label>
-  <label for="slide1" class="prev prev2">&#10094;</label>
-  <label for="slide2" class="prev prev3">&#10094;</label>
-  <label for="slide3" class="prev prev4">&#10094;</label>
-  <label for="slide4" class="prev prev5">&#10094;</label>
-
-  <!-- Flecha siguiente -->
-  <label for="slide2" class="next next1">&#10095;</label>
-  <label for="slide3" class="next next2">&#10095;</label>
-  <label for="slide4" class="next next3">&#10095;</label>
-  <label for="slide5" class="next next4">&#10095;</label>
-  <label for="slide1" class="next next5">&#10095;</label>
-  </div>
-
-</div>
-  <!-- Flechas para cambiar de imagen -->
-  <div class="arrows">
-    <!-- Flecha anterior -->
-    <label for="slide5" class="prev prev1">&#10094;</label>
-    <label for="slide1" class="prev prev2">&#10094;</label>
-    <label for="slide2" class="prev prev3">&#10094;</label>
-    <label for="slide3" class="prev prev4">&#10094;</label>
-    <label for="slide4" class="prev prev5">&#10094;</label>
-
-    <!-- Flecha siguiente -->
-    <label for="slide2" class="next next1">&#10095;</label>
-    <label for="slide3" class="next next2">&#10095;</label>
-    <label for="slide4" class="next next3">&#10095;</label>
-    <label for="slide5" class="next next4">&#10095;</label>
-    <label for="slide1" class="next next5">&#10095;</label>
-  </div>
-
-</div>
-
-<script>
-  const slides = 5;
-  let current = 1;
-
-  setInterval(() => {
-    document.getElementById(`slide${current}`).checked = false;
-    current = current < slides ? current + 1 : 1;
-    document.getElementById(`slide${current}`).checked = true;
-  }, 10000);
-</script>
-
-
-<div class="rectangulo">
-  <p>
-    <span class="destacado">Arquitectura que trasciende</span> lo convencional por su valor ecológico y social.
-  </p>
-  
-</div>
-
-<div class="video-container">
-  <video autoplay muted loop playsinline>
-    <source src="proyectos\Untitled video.mp4" type="video/mp4" />
-    Tu navegador no soporta video HTML5.
-  </video>
-</div>
-
-<div class="rectangulo rectangulo2">
-  <p>
-    <span class="destacado">Tu proyecto se transforma</span> en un referente gracias a la unión de diseño paramétrico, tecnología con un enfoque sostenible que armoniza innovación y naturaleza.
-  </p>
-  
-</div>
-<div class="seccion-tres">
-  <div class="card">
-    <img src="proyectos\enhanced_4_32 - Foto.png" alt="Imagen 1">
-    <div class="card-texto">
-      <h3>Arquitectura y Diseño </h3>
-      <p>"Con tu idea y nuestra visión, creamos espacios que inspiran y se integran con su entorno."</p>
+      <label for="slide2" class="next next1">&#10095;</label>
+      <label for="slide3" class="next next2">&#10095;</label>
+      <label for="slide4" class="next next3">&#10095;</label>
+      <label for="slide5" class="next next4">&#10095;</label>
+      <label for="slide1" class="next next5">&#10095;</label>
     </div>
   </div>
 
-  <div class="card">
-    <img src="proyectos\12.png" alt="Imagen 2">
-    <div class="card-texto">
-      <h3>Urbanismo & Desarrollo Sostenible</h3>
-      <p>"Tu proyecto, nuestro plan: construimos territorios sostenibles y vivos."</p>
-    </div>
+  <script>
+    const slides = 5;
+    let current = 1;
+    setInterval(() => {
+      document.getElementById(`slide${current}`).checked = false;
+      current = current < slides ? current + 1 : 1;
+      document.getElementById(`slide${current}`).checked = true;
+    }, 10000);
+  </script>
+
+  <div class="rectangulo">
+    <p>
+      <span class="destacado">Arquitectura que trasciende</span> lo convencional por su valor ecológico y social.
+    </p>
   </div>
 
-  <div class="card">
-    <img src="proyectos\1.png" alt="Imagen 3">
-    <div class="card-texto">
-      <h3> Diseño Eco-Turístico & Ambiental</h3>
-      <p>"Tu visión, nuestro enfoque: diseñamos espacios eco-turísticos y conectan con la naturaleza."</p>
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="proyectos/Untitled video.mp4" type="video/mp4" />
+      Tu navegador no soporta video HTML5.
+    </video>
+  </div>
+
+  <div class="rectangulo rectangulo2">
+    <p>
+      <span class="destacado">Tu proyecto se transforma</span> en un referente gracias a la unión de diseño paramétrico, tecnología con un enfoque sostenible que armoniza innovación y naturaleza.
+    </p>
+  </div>
+
+  <div class="seccion-tres">
+    <div class="card">
+      <img src="proyectos/enhanced_4_32 - Foto.png" alt="Imagen 1">
+      <div class="card-texto">
+        <h3>Arquitectura y Diseño </h3>
+        <p>"Con tu idea y nuestra visión, creamos espacios que inspiran y se integran con su entorno."</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="proyectos/12.png" alt="Imagen 2">
+      <div class="card-texto">
+        <h3>Urbanismo & Desarrollo Sostenible</h3>
+        <p>"Tu proyecto, nuestro plan: construimos territorios sostenibles y vivos."</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="proyectos/1.png" alt="Imagen 3">
+      <div class="card-texto">
+        <h3>Diseño Eco-Turístico & Ambiental</h3>
+        <p>"Tu visión, nuestro enfoque: diseñamos espacios eco-turísticos que conectan con la naturaleza."</p>
+      </div>
     </div>
   </div>
-</div>
-
-
 </body>
 </html>
-
-
 
 
 
