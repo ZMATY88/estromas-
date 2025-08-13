@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #000000; /* negro */
+    background-color: #000000;
     line-height: 1.6;
     font-family: 'Futura', sans-serif;
 }
@@ -26,7 +26,7 @@ nav {
 }
 
 .logo {
-    font-size: 2.5rem;  /* tamaño base escritorio */
+    font-size: 2.5rem;
     font-weight: 700;
     color: #ffffff;
 }
@@ -41,24 +41,19 @@ nav {
     text-decoration: none;
     color: #ffffff;
     font-weight: 500;
-    font-size: 1.5rem;  /* tamaño base escritorio */
+    font-size: 1.5rem;
 }
 
 /* Carrusel */
-
 .carousel {
     width: 100vw;
     max-width: none;
     position: relative;
     overflow: hidden;
-    border-radius: 0;
-    box-shadow: none;
     margin: 0;
 }
 
-.carousel input {
-    display: none;
-}
+.carousel input { display: none; }
 
 .slides {
     display: flex;
@@ -77,24 +72,7 @@ nav {
     object-fit: cover;
 }
 
-/* Movimiento de slides según radio seleccionado */
-#slide1:checked ~ .slides {
-    transform: translateX(0);
-}
-#slide2:checked ~ .slides {
-    transform: translateX(-20%);
-}
-#slide3:checked ~ .slides {
-    transform: translateX(-40%);
-}
-#slide4:checked ~ .slides {
-    transform: translateX(-60%);
-}
-#slide5:checked ~ .slides {
-    transform: translateX(-80%);
-}
-
-/* Botones manuales (puntos) */
+/* Botones manuales */
 .navigation-manual {
     position: absolute;
     width: 100%;
@@ -114,11 +92,9 @@ nav {
     background: rgba(255,255,255,0.5);
 }
 
-.manual-btn:hover {
-    background: #fff;
-}
+.manual-btn:hover { background: #fff; }
 
-/* Flechas para navegar */
+/* Flechas */
 .arrows label {
     display: none;
     position: absolute;
@@ -130,15 +106,11 @@ nav {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-    user-select: none;
     z-index: 10;
 }
 
-.arrows label:hover {
-    background: rgba(0,0,0,0.7);
-}
+.arrows label:hover { background: rgba(0,0,0,0.7); }
 
-/* Mostrar flechas según slide activo */
 #slide1:checked ~ .arrows .prev1,
 #slide1:checked ~ .arrows .next1,
 #slide2:checked ~ .arrows .prev2,
@@ -152,154 +124,103 @@ nav {
     display: block;
 }
 
-.arrows .prev1,
-.arrows .prev2,
-.arrows .prev3,
-.arrows .prev4,
-.arrows .prev5 {
-    left: 10px;
-}
+.arrows .prev1, .arrows .prev2, .arrows .prev3, .arrows .prev4, .arrows .prev5 { left: 10px; }
+.arrows .next1, .arrows .next2, .arrows .next3, .arrows .next4, .arrows .next5 { right: 10px; }
 
-.arrows .next1,
-.arrows .next2,
-.arrows .next3,
-.arrows .next4,
-.arrows .next5 {
-    right: 10px;
-}
-
-
-.rectangulo {
+/* Rectángulos */
+.rectangulo, .rectangulo2 {
   height: 600px;
   background-color: #000000;
-
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 200px;
-
   font-size: clamp(20pt, 5vw, 30pt);
   color: #ffffff;
 }
 
-.destacado {
-  font-weight: bold;
+.destacado { font-weight: bold; }
+
+/* Ajuste de texto responsivo en rectángulos solo móviles */
+@media screen and (max-width: 768px) {
+  .rectangulo p,
+  .rectangulo2 p {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    line-height: 1.3;
+    max-width: 90%;
+    padding: 0 10px;
+  }
+  .rectangulo .destacado,
+  .rectangulo2 .destacado {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+  }
 }
 
-
-.destacado {
-  font-weight: bold;
-}
-
-
-
+/* Video */
 .video-container {
-width: 100vw;           /* siempre ocupa el ancho completo */
-  aspect-ratio: 16 / 9;   /* proporción ancho:alto del video */
+  width: 100vw;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: white;
-  margin-top: 0px;
-  margin-bottom: 0;   
 }
 
 .video-container video {
   width: 100%;
   height: 100%;
-  background-color: white;  /* fondo blanco */
-  object-fit: cover; /* para cubrir todo el contenedor sin distorsión */
-  display: block; /* elimina espacio debajo del video */
+  object-fit: cover;
+  display: block;
 }
 
-.rectangulo2  {
-  height: 600px;
-  background-color: #000000;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 200px;
-
-  font-size: clamp(20pt, 5vw, 30pt);
-  color: #ffffff;
-}
-
-.destacado {
-  font-weight: bold;
-}
-
-
-
-
+/* Sección de 3 cards */
 .seccion-tres {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* centra verticalmente las cards */
-  align-items: stretch; /* estira todas las cards a la misma altura */
-  width: 100%; /* ocupa todo el ancho */
-  margin: 100px auto; /* espacio arriba y abajo */
-  height: 600px; /* altura de la sección */
-  gap: 20px; /* espacio entre columnas */
-  background-color: #000000; /* color de fondo */
-  padding: 20px; /* espacio interno */
+  align-items: stretch; /* todas las cards con misma altura */
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+  background-color: #000000;
   box-sizing: border-box;
+  margin: 100px auto;
+  height: 600px;
 }
 
 .card {
-  flex: 1; /* cada card ocupa el mismo ancho */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
 .card img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 8px;
-  aspect-ratio: 16 / 9; /* mantiene proporción dinámica */
 }
 
 .card-texto {
   margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
+   flex-shrink: 0
 }
 
 .card-texto h3 {
-  font-size: clamp(1rem, 2vw, 1.5rem); /* tamaño dinámico según ancho de ventana */
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #ffffff;
   margin-bottom: 5px;
-  color: #ffffff; /* título visible sobre fondo negro */
 }
 
 .card-texto p {
-  font-size: clamp(0.8rem, 1.5vw, 1rem); /* tamaño dinámico según ancho de ventana */
-  color: #ffffff; /* subtítulo visible sobre fondo negro */
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: #ffffff;
 }
 
-/* Responsivo: apilar cards en móviles */
+/* Responsivo */
 @media screen and (max-width: 768px) {
   .seccion-tres {
     flex-direction: column;
-    align-items: center;
-    height: auto; /* altura automática para contenido apilado */
-  }
-
-  .card {
-    flex: 1 1 100%;
-    margin-bottom: 20px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .seccion-tres {
-    flex-direction: column;
-    align-items: center;
     height: auto;
-    padding: 20px;
   }
 
   .card {
@@ -308,6 +229,7 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   }
 
   .card img {
+    flex: unset;
     width: 100%;
     aspect-ratio: 16 / 9;
   }
@@ -331,6 +253,9 @@ width: 100vw;           /* siempre ocupa el ancho completo */
     height: auto;
   }
 }
+
+
+
 
 @media screen and (max-width: 430px) {
     
