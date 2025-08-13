@@ -355,28 +355,3 @@ width: 100vw;           /* siempre ocupa el ancho completo */
   }
 }
 
-@media screen and (max-width: 430px) {
-    nav {
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-top: 0;
-    }
-
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .nav-links a {
-        font-size: 0.7rem;
-    }
-
-    .slide img {
-        height: auto;
-        max-height: 300px;
-    }
-}
