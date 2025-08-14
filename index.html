@@ -65,11 +65,56 @@
   <script>
     const slides = 5;
     let current = 1;
-    setInterval(() => {
-      document.getElementById(`slide${current}`).checked = false;
-      current = current < slides ? current + 1 : 1;
+    let timer;
+
+    function showSlide(n) {
+      current = n;
       document.getElementById(`slide${current}`).checked = true;
-    }, 10000);
+    }
+
+    function nextSlide() {
+      current = current < slides ? current + 1 : 1;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = current > 1 ? current - 1 : slides;
+      showSlide(current);
+    }
+
+    function startAutoSlide() {
+      timer = setInterval(nextSlide, 8000); // 8 segundos
+    }
+
+    function stopAutoSlide() {
+      clearInterval(timer);
+    }
+
+    // Iniciar auto-cambio
+    startAutoSlide();
+
+    // Escuchar clicks en flechas
+    document.querySelectorAll('.arrows label').forEach(label => {
+      label.addEventListener('click', () => {
+        stopAutoSlide();
+        for (let i = 1; i <= slides; i++) {
+          if (document.getElementById(`slide${i}`).checked) {
+            current = i;
+            break;
+          }
+        }
+        startAutoSlide();
+      });
+    });
+
+    // Escuchar clicks en puntos manuales
+    document.querySelectorAll('.manual-btn').forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        stopAutoSlide();
+        current = index + 1;
+        startAutoSlide();
+      });
+    });
   </script>
 
   <div class="rectangulo">
@@ -116,12 +161,56 @@
       </div>
     </div>
   </div>
+
+<section id="equipo">
+  <div class="team-wrap">
+    <!-- Título centrado en el ancho de las tarjetas -->
+    <h2 class="titulo-equipo">Nuestro Equipo</h2>
+
+    <div class="team-container">
+      <!-- Persona 1 -->
+      <div class="team-member">
+        <img src="proyectos/EQUIPO/14.png" alt="Nombre 1">
+        <h3>Darío Pintado Cajamarca | MDI Arch.</h3>
+        <p>Cargo 1</p>
+      </div>
+      <!-- Persona 2 -->
+      <div class="team-member">
+        <img src="proyectos/EQUIPO/12.png" alt="Nombre 2">
+        <h3>Natalia Juca Freire | MSc. MDI Arch.</h3>
+        <p>Cargo 2</p>
+      </div>
+      <!-- Persona 3 -->
+      <div class="team-member">
+        <img src="proyectos/EQUIPO/15.png" alt="Nombre 3">
+        <h3>Nombre 3</h3>
+        <p>Cargo 3</p>
+      </div>
+      <!-- Persona 4 -->
+      <div class="team-member">
+        <img src="proyectos/EQUIPO/1.png" alt="Nombre 4">
+        <h3>Nombre 4</h3>
+        <p>Cargo 4</p>
+      </div>
+      <!-- Persona 5 -->
+      <div class="team-member">
+        <img src="proyectos/EQUIPO/16.png" alt="Nombre 5">
+        <h3>Nombre 5</h3>
+        <p>Cargo 5</p>
+      </div>
+      <!-- Persona 6 -->
+      <div class="team-member">
+        <img src="proyectos/EQUIPO/13.png" alt="Nombre 6">
+        <h3>Nombre 6</h3>
+        <p>Cargo 6</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 </body>
 </html>
-
-
-
-
-    <!-- git add .
-git commit -m "Mensaje descriptivo de los cambios"
-git push-->
