@@ -1,3 +1,6 @@
+/* =======================
+   TU CSS ORIGINAL
+   ======================= */
 * {
     margin: 0;
     padding: 0;
@@ -31,6 +34,59 @@ nav {
     font-weight: 700;
     color: #ffffff;
 }
+/* ==== Logo: palabra → isotipo con fade + slide + micro-scale ==== */
+.logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Capas (palabra e isotipo) */
+.logo-word,
+.logo-mark {
+  transition:
+    opacity 240ms ease,
+    transform 260ms cubic-bezier(.2,.8,.2,1);
+  will-change: opacity, transform;
+}
+
+/* Estado inicial */
+.logo-word { opacity: 1; transform: translateY(0) scale(1); }
+
+.logo-mark {
+  position: absolute;
+  /* Tamaño relativo a la tipografía del logo; ajusta a tu gusto */
+  width: 1.9em;
+  height: 1.9em;
+  opacity: 0;
+  transform: translateY(6px) scale(.94);
+  object-fit: contain;
+  display: block;
+}
+
+/* Interacción: hover/focus del nav → oculta palabra, muestra isotipo */
+nav:hover .logo .logo-word,
+nav:focus-within .logo .logo-word {
+  opacity: 0;
+  transform: translateY(-4px) scale(.98);
+}
+nav:hover .logo .logo-mark,
+nav:focus-within .logo .logo-mark {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Accesibilidad: respeta preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .logo-word, .logo-mark { transition: none; }
+}
+
+/* (Opcional) Si tu SVG es negro y el fondo del nav es negro,
+   puedes invertirlo rápidamente hasta afinar tu archivo:
+.logo-mark { filter: invert(1); }
+*/
 
 .nav-links {
     list-style: none;
@@ -68,7 +124,7 @@ nav {
 
 .slide img {
     width: 100%;
-    height: 1200px;
+    height: 900px;
     object-fit: cover;
 }
 
@@ -133,7 +189,7 @@ nav {
 .arrows .next1, .arrows .next2, .arrows .next3, .arrows .next4, .arrows .next5 { right: 10px; }
 
 /* Rectángulos */
-.rectangulo, .rectangulo2 {
+.rectangulo{
   height: 600px;
   background-color: #000000;
   display: flex;
@@ -144,8 +200,31 @@ nav {
   font-size: clamp(20pt, 5vw, 30pt);
   color: #ffffff;
 }
+.rectangulo2 {
+  height: 600px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 200px;
+  font-size: clamp(20pt, 5vw, 30pt);
+  color: #000000;
+}
+
 
 .destacado { font-weight: bold; }
+
+
+/* Estilo para el título de servicios */
+.titulo-servicios {
+  text-align: center;                /* Centrado */
+  color: #ffffff;                     /* Blanco para fondo oscuro */
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Escalable en móviles */
+  margin: 50px 0 30px;                /* Espaciado superior/inferior */
+  font-weight: 700;                   /* Negrita */
+  font-family: 'Poppins', sans-serif; /* Fuente consistente */
+}
 
 /* ======== SECCIÓN EQUIPO ======== */
 #equipo {
@@ -162,12 +241,12 @@ nav {
 
 /* Título con ajuste manual */
 #equipo h2 {
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 40px;
   text-align: center;
   grid-column: 1 / -1;
   position: relative;
-  right: 35px;  /* ← Cambia este valor para mover horizontalmente */
+  right: 5px;  /* ← Cambia este valor para mover horizontalmente */
   justify-self: center;
 }
 
@@ -323,3 +402,110 @@ nav {
         height: 300px;
     }
 }
+
+/* =======================
+   OVERRIDES / MEJORAS
+   (no se elimina nada, solo se sobreescribe)
+   ======================= */
+
+/* 1) Carrusel: altura adaptable y límite en pantallas grandes */
+.slide img {
+  /* Sobrescribe la altura fija para mejorar en móvil y monitores */
+  height: 100vh;              /* Ocupa alto visible */
+  max-height: 900px;          /* Evita que sea excesivo en desktop muy alto */
+  aspect-ratio: 16 / 9;       /* Mantiene proporción */
+  object-fit: cover;
+}
+
+/* 2) Transiciones más suaves y accesibles */
+.slides {
+  transition: transform 0.6s ease;
+}
+
+/* 3) Rectángulos: padding fluido (sigue respetando tu estilo) */
+.rectangulo,
+.rectangulo2 {
+  padding: clamp(40px, 10vw, 200px); /* Escalable según ancho de pantalla */
+}
+
+/* 4) Equipo: efecto hover opcional para dar vida a las fotos */
+.team-member img {
+  transition: filter 0.3s ease;
+}
+.team-member img:hover {
+  filter: grayscale(0%);
+}
+
+/* 5) Accesibilidad: focus visible en enlaces y controles del carrusel */
+.nav-links a:focus-visible,
+.manual-btn:focus-visible,
+.arrows label:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* 6) Flechas del carrusel: mejor “tap target” en móvil */
+@media (max-width: 768px) {
+  .arrows label {
+    font-size: 2.5rem;     /* Más grandes en móvil */
+    padding: 10px 14px;    /* Área pulsable cómoda */
+    border-radius: 8px;
+  }
+}
+
+/* 7) Navbar responsive: corrige flex-direction inválidos */
+@media screen and (max-width: 430px) {
+  /* Tu regla original queda, pero estas sobreescriben con valores válidos */
+  nav {
+    flex-direction: column;   /* En columna para apilar logo y links */
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-links {
+    flex-direction: column;   /* Menú vertical */
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+/* 8) Rectángulos: tipografía más legible en móvil muy pequeño */
+@media (max-width: 430px) {
+  .rectangulo, .rectangulo2 {
+    height: auto;               /* Permite crecer según contenido */
+  }
+}
+
+/* 9) Mejora de performance para usuarios con reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .slides {
+    transition: none;
+  }
+  .manual-btn,
+  .team-member img {
+    transition: none;
+  }
+}
+
+/* 10) Botones manuales del carrusel: mayor área de clic */
+.manual-btn {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+/* 11) Header sticky (opcional suave) */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* 12) Pequeños ajustes de spacing en desktop grande */
+@media (min-width: 1280px) {
+  .seccion-tres {
+    padding: 40px 60px;
+    gap: 30px;
+  }
+}
+
+
