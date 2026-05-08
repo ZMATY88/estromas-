@@ -585,10 +585,9 @@
       </div>
     </div>
     <div class="reveal reveal-delay-1">
-      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
-        <input type="hidden" name="_to" value="info@estromas.com">
+      <form class="contact-form" action="https://formspree.io/f/xvzlwayd" method="POST">
         <input type="hidden" name="_subject" value="Nuevo contacto desde estromas.com">
-        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://estromas.com/?enviado=true">
         <div class="form-row">
           <div class="form-group">
             <label data-es>Nombre</label><label data-en>Name</label>
@@ -602,7 +601,7 @@
         <div class="form-group">
           <label data-es>¿Qué te interesa?</label><label data-en>What are you interested in?</label>
           <select name="interes" required>
-            <option value="" disabled selected data-es>Selecciona una opción</option>
+            <option value="" disabled selected>Selecciona una opción</option>
             <option value="Caudales - Compra">Departamentos Caudales — Compra</option>
             <option value="Caudales - Inversión">Departamentos Caudales — Inversión</option>
             <option value="Proyecto de Arquitectura">Proyecto de Arquitectura</option>
@@ -613,9 +612,9 @@
         </div>
         <div class="form-group">
           <label data-es>Mensaje</label><label data-en>Message</label>
-          <textarea rows="4" name="mensaje" data-es-placeholder="Cuéntanos sobre tu proyecto..." data-en-placeholder="Tell us about your project..." required></textarea>
+          <textarea rows="4" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
         </div>
-        <button type="submit" class="btn-submit" id="submitBtn">
+        <button type="submit" class="btn-submit">
           <span data-es>Enviar Mensaje</span><span data-en>Send Message</span>
         </button>
       </form>
@@ -690,52 +689,6 @@
   // REVEAL
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-  // FORM — Formspree
-  async function handleSubmit(e){
-    e.preventDefault();
-    const form = e.target;
-    const btn = document.getElementById('submitBtn');
-    const es = document.body.classList.contains('lang-es');
-
-    // Estado: enviando
-    btn.textContent = es ? 'Enviando...' : 'Sending...';
-    btn.style.opacity = '0.7';
-    btn.disabled = true;
-
-    const data = new FormData(form);
-
-    try {
-      const res = await fetch('https://formspree.io/f/xvzlwayd', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        btn.textContent = es ? '✓ ¡Mensaje enviado! Te contactamos pronto.' : '✓ Message sent! We\'ll be in touch soon.';
-        btn.style.background = 'var(--lichen)';
-        btn.style.opacity = '1';
-        form.reset();
-        setTimeout(() => {
-          btn.innerHTML = es ? '<span data-es>Enviar Mensaje</span>' : '<span data-en>Send Message</span>';
-          btn.style.background = 'var(--gold)';
-          btn.disabled = false;
-        }, 4000);
-      } else {
-        throw new Error('Error en el servidor');
-      }
-    } catch(err) {
-      btn.textContent = es ? 'Error — intenta por WhatsApp' : 'Error — try via WhatsApp';
-      btn.style.background = '#8B4444';
-      btn.style.opacity = '1';
-      btn.disabled = false;
-      setTimeout(() => {
-        btn.innerHTML = es ? '<span data-es>Enviar Mensaje</span>' : '<span data-en>Send Message</span>';
-        btn.style.background = 'var(--gold)';
-      }, 4000);
-    }
-  }
 
   setLang('es');
 </script>
