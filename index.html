@@ -158,7 +158,9 @@
   .projects-intro h2 em{color:var(--gold);font-style:italic;}
   .projects-intro p{font-size:.9rem;line-height:1.8;color:var(--stone);}
   .projects-grid{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:2px;}
-  .proj-card{position:relative;overflow:hidden;background:var(--soil);aspect-ratio:4/3;}
+  .proj-card{position:relative;overflow:hidden;background:var(--soil);aspect-ratio:4/3;display:block;text-decoration:none;}
+  .proj-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.8);transition:transform .8s ease,filter .6s;}
+  .proj-card:hover .proj-card-img{transform:scale(1.05);filter:brightness(.7) saturate(1);}
   .proj-card:nth-child(1){grid-row:span 2;aspect-ratio:auto;}
   .proj-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,21,.9) 0%,transparent 60%);padding:2.5rem;display:flex;flex-direction:column;justify-content:flex-end;}
   .proj-tag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
@@ -197,7 +199,9 @@
   .team h2 em{color:var(--gold);font-style:italic;}
   .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;}
   .team-photo{width:100%;aspect-ratio:3/4;background:var(--bark);position:relative;overflow:hidden;margin-bottom:1.5rem;}
-  .team-photo-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+  .team-photo-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .team-img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.6s ease, filter 0.6s ease;}
+  .team-card:hover .team-img{transform:scale(1.04);filter:brightness(0.95) saturate(1);}
   .tp-1{background:linear-gradient(160deg,#1a1f10,#242e18);}
   .tp-2{background:linear-gradient(160deg,#151f1a,#1d2c24);}
   .tp-3{background:linear-gradient(160deg,#1a1a10,#282815);}
@@ -496,18 +500,24 @@
     <p class="reveal reveal-delay-1" style="font-size:.9rem;line-height:1.8;color:var(--stone)" data-en>Each project is an investigation into local materials, living systems, and technology in service of the ecosystem. We don't build buildings — we create habitats.</p>
   </div>
   <div class="projects-grid reveal">
-    <div class="proj-card">
+    <a href="symbiosis.html" class="proj-card">
+      <!-- 📷 SYMBIOSIS — cambia el src por tu foto de portada -->
+      <img src="proyectos/SYMBIOSIS/portada.jpg" class="proj-card-img" onerror="this.style.display='none'">
       <div class="proj-visual pv-1"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="60%" opacity="0.25"><ellipse cx="100" cy="120" rx="80" ry="60" stroke="#C8A96E" stroke-width="0.5" fill="none"/><path d="M40 120 Q100 40 160 120" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
       <div class="proj-card-overlay"><p class="proj-tag" data-es>Bioconstrucción · Cuenca</p><p class="proj-tag" data-en>Bioconstruction · Cuenca</p><h3 class="proj-title">Symbiosis<br><em>experi(ence)ment</em></h3><p class="proj-meta" data-es>Bioparque Amaru · 53 m² · Construido</p><p class="proj-meta" data-en>Bioparque Amaru · 53 m² · Built</p></div>
-    </div>
-    <div class="proj-card">
+    </a>
+    <a href="testudines.html" class="proj-card">
+      <!-- 📷 TESTUDINES — cambia el src por tu foto de portada -->
+      <img src="proyectos\TESTUDINES\IMG_6350.jpg" class="proj-card-img" onerror="this.style.display='none'">
       <div class="proj-visual pv-2"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="55%" opacity="0.2"><path d="M100 20 Q160 60 160 120 Q160 170 100 180 Q40 170 40 120 Q40 60 100 20Z" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
       <div class="proj-card-overlay"><p class="proj-tag" data-es>Santuario · Cuenca</p><p class="proj-tag" data-en>Sanctuary · Cuenca</p><h3 class="proj-title">Testudines<br><em>living shell</em></h3><p class="proj-meta" data-es>Bioparque Amaru · 250 m² · Construido</p><p class="proj-meta" data-en>Bioparque Amaru · 250 m² · Built</p></div>
-    </div>
-    <div class="proj-card">
+    </a>
+    <a href="wings-roots.html" class="proj-card">
+      <!-- 📷 WINGS & ROOTS — cambia el src por tu foto de portada -->
+      <img src="proyectos/WINGS-ROOTS/portada.jpg" class="proj-card-img" onerror="this.style.display='none'">
       <div class="proj-visual pv-3"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="55%" opacity="0.2"><rect x="30" y="60" width="140" height="100" stroke="#C8A96E" stroke-width="0.5" fill="none"/><path d="M30 60 Q100 20 170 60" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
       <div class="proj-card-overlay"><p class="proj-tag" data-es>Rooftop · Centro Histórico</p><p class="proj-tag" data-en>Rooftop · Historic Center</p><h3 class="proj-title">Wings &amp; Roots<br><em>páramo rooftop</em></h3><p class="proj-meta" data-es>Cuenca · 250 m² · En desarrollo</p><p class="proj-meta" data-en>Cuenca · 250 m² · In development</p></div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -566,7 +576,7 @@
   <h2 class="reveal" data-en>Architects with <em>local</em> roots,<br><em>global</em> vision.</h2>
   <div class="team-grid">
     <div class="team-card reveal">
-      <div class="team-photo"><div class="team-photo-inner tp-1"><span class="team-initial">NJ</span></div><div class="team-line"></div></div>
+      <div class="team-photo"><div class="team-photo-inner tp-1"><img src="equipo/NATI.jpg" alt="Natalia Juca Freire" class="team-img team-img-nati"></div><div class="team-line"></div></div>
       <p class="team-name">Natalia Juca Freire</p>
       <p class="team-role" data-es>Co-Fundadora · Directora Creativa y de Investigación</p><p class="team-role" data-en>Co-Founder · Creative & Research Director</p>
       <p class="team-bio" data-es>Especialista en tecnologías emergentes y pensamiento multiespecie. Combina investigación arquitectónica con estrategia de negocio para crear proyectos de impacto real.</p>
@@ -574,19 +584,19 @@
       <div class="team-creds"><p class="cred">MSc. Emergent Technologies — Architectural Association, London</p><p class="cred">Chevening Award — UK Government</p><p class="cred">MBA — USFQ Quito</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
     </div>
     <div class="team-card reveal reveal-delay-1">
-      <div class="team-photo"><div class="team-photo-inner tp-2"><span class="team-initial">DP</span></div><div class="team-line"></div></div>
+      <div class="team-photo"><div class="team-photo-inner tp-2"><img src="equipo/DARI.jpg" alt="Darío Pintado Cajamarca" class="team-img team-img-dari"></div><div class="team-line"></div></div>
       <p class="team-name">Darío Pintado Cajamarca</p>
       <p class="team-role" data-es>Co-Fundador · Director Técnico</p><p class="team-role" data-en>Co-Founder · Technical Director</p>
-      <p class="team-bio" data-es>Especialista en confort térmico, restauración patrimonial y bioconstrucción. Conecta el conocimiento local con el pensamiento arquitectónico contemporáneo.</p>
-      <p class="team-bio" data-en>Specialist in thermal comfort, heritage restoration, and bioconstruction. Connects local knowledge with contemporary architectural thinking.</p>
+      <p class="team-bio" data-es>Especialista en dirección de proyectos, combina investigación arquitectónica con estrategia de negocio para crear proyectos de impacto real.</p>
+      <p class="team-bio" data-en>Specialist in project management, combines architectural research with business strategy to create real-impact projects.</p>
       <div class="team-creds"><p class="cred">MBA — USFQ Quito</p><p class="cred">Bioconstrucción &amp; Eficiencia Energética</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
     </div>
     <div class="team-card reveal reveal-delay-2">
-      <div class="team-photo"><div class="team-photo-inner tp-3"><span class="team-initial">MA</span></div><div class="team-line"></div></div>
+      <div class="team-photo"><div class="team-photo-inner tp-3"><img src="equipo/MATI.jpg" alt="Matías Ávila Quezada" class="team-img team-img-mati"></div><div class="team-line"></div></div>
       <p class="team-name">Matías Ávila Quezada</p>
       <p class="team-role" data-es>Director de Diseño</p><p class="team-role" data-en>Design Director</p>
-      <p class="team-bio" data-es>Arquitecto con especialización en diseño paramétrico y representación arquitectónica. Responsable del desarrollo visual y técnico de cada proyecto.</p>
-      <p class="team-bio" data-en>Architect specializing in parametric design and architectural representation. Responsible for the visual and technical development of each project.</p>
+      <p class="team-bio" data-es>Especialista en diseño computacional y representación arquitectónica. Lidera la visión formal y visual de los proyectos del estudio, integrando procesos digitales, criterios espaciales y comunicación arquitectónica.</p>
+      <p class="team-bio" data-en>Specialist in computational design and architectural representation. Leads the formal and visual vision of the studio's projects, integrating digital processes, spatial criteria, and architectural communication.</p>
       <div class="team-creds"><p class="cred">Diseño Paramétrico &amp; Digital Fabrication</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
     </div>
   </div>
