@@ -315,6 +315,83 @@
       .gi-col{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto;}
       .gallery-item.gi-half{aspect-ratio:4/3;height:auto;}
     }
+
+    @media(max-width:768px){
+      /* Slideshow móvil — foto grande a 55vh, pequeñas como fila */
+      .slide-inner{height:auto !important;}
+      .slide-inner.slide-grid{
+        display:flex !important;
+        flex-direction:column;
+        height:auto !important;
+        gap:2px;
+      }
+      .gallery-item.gi-full{
+        width:100%;
+        height:55vh !important;
+        min-height:280px;
+        aspect-ratio:unset !important;
+      }
+      .gallery-item.gi-main{
+        width:100%;
+        height:55vh !important;
+        min-height:280px;
+        aspect-ratio:unset !important;
+      }
+      .gi-col{
+        display:grid !important;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:auto;
+        height:auto !important;
+        gap:2px;
+      }
+      .gallery-item.gi-half{
+        width:100%;
+        height:30vw !important;
+        min-height:120px;
+        flex:unset !important;
+        aspect-ratio:unset !important;
+      }
+      /* Flechas de navegación más accesibles en móvil */
+      .slide-arrow{
+        width:44px !important;
+        height:44px !important;
+        font-size:1rem !important;
+      }
+      .slide-arrow.prev{left:-20px !important;}
+      .slide-arrow.next{right:-20px !important;}
+      .slide-controls{padding:0 24px;}
+      /* Hero en móvil */
+      .proj-hero{height:70vh !important;min-height:400px;padding:0 1.5rem 3rem !important;}
+      .proj-title-wrap h1 .t1{font-size:clamp(2.5rem,10vw,4rem) !important;}
+      .proj-title-wrap h1 .t2{font-size:clamp(1.2rem,5vw,2rem) !important;}
+      /* Descripción en móvil */
+      .proj-desc-inner{grid-template-columns:1fr !important;gap:3rem !important;}
+      .proj-specs-grid{grid-template-columns:1fr 1fr !important;}
+      /* Proceso en móvil */
+      .process-grid{grid-template-columns:1fr !important;}
+      /* Materiales en móvil */
+      .tech-grid{grid-template-columns:1fr 1fr !important;}
+      /* Nav proyecto en móvil */
+      .proj-nav-inner{flex-direction:column !important;gap:2rem !important;text-align:center !important;}
+      .proj-nav-divider{width:60px !important;height:1px !important;}
+      /* Footer en móvil */
+      footer{flex-direction:column !important;align-items:flex-start !important;padding:2.5rem 1.5rem !important;gap:1.2rem !important;}
+      /* Lightbox en móvil */
+      .lightbox-content img{max-width:95vw !important;max-height:75vh !important;}
+      .lightbox-close{top:1rem !important;right:1rem !important;}
+    }
+    @media(max-width:480px){
+      .gallery-item.gi-full,.gallery-item.gi-main{height:50vw !important;min-height:220px;}
+      .gallery-item.gi-half{height:28vw !important;min-height:100px;}
+      .proj-section{padding:3rem 1.2rem !important;}
+    }
+    @media(min-width:769px) and (max-width:1024px){
+      .slide-inner{height:70vh !important;}
+      .slide-inner.slide-grid{height:70vh !important;}
+      .gallery-item.gi-full,.gallery-item.gi-main{height:70vh !important;}
+      .gi-col{height:70vh !important;}
+      .proj-desc-inner{gap:4rem !important;}
+    }
   </style>
 
   <script>
