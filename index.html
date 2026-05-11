@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estromas — Eco-Centric Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --soil: #1C1A15; --bark: #2E2B22; --moss: #4A5240;
+    --lichen: #7A8C6E; --stone: #B8B0A0; --cream: #F4F0E8;
+    --gold: #C8A96E; --gold-light: #E8C98E;
+    --announce-h: 40px; --nav-h: 80px;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; font-size:16px; }
+  body { background:var(--soil); color:var(--cream); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; cursor:none; padding-top:calc(var(--announce-h) + var(--nav-h)); }
+
+  .cursor,.cursor-ring{display:none;}
+  @media(pointer:fine){
+    .cursor{display:block;width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
+    .cursor-ring{display:block;width:32px;height:32px;border:1px solid rgba(200,169,110,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s;}
+    body{cursor:none;}
+  }
+
+  .announce{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--announce-h);background:var(--gold);display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 3rem;}
+  .announce-dot{width:6px;height:6px;border-radius:50%;background:var(--soil);opacity:.5;animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
+  .announce p{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--soil);text-align:center;}
+  .announce a{color:var(--soil);font-weight:500;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
+  .announce-close{position:absolute;right:1rem;background:none;border:none;cursor:pointer;color:var(--soil);opacity:.5;font-size:1rem;padding:.5rem;}
+  @keyframes pulse{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.4);}}
+
+  nav{position:fixed;top:var(--announce-h);left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 4rem;transition:background .4s;}
+  nav.scrolled{background:rgba(28,26,21,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,169,110,.1);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--cream);text-decoration:none;flex-shrink:0;}
+  .nav-logo .l{color:var(--cream);transition:color 0.3s;display:inline-block;}
+  .nav-logo:hover .l:nth-child(1){color:var(--gold);transition-delay:0s;}
+  .nav-logo:hover .l:nth-child(2){color:var(--gold);transition-delay:.04s;}
+  .nav-logo:hover .l:nth-child(3){color:var(--gold);transition-delay:.08s;}
+  .nav-logo:hover .l:nth-child(4){color:var(--gold);transition-delay:.12s;}
+  .nav-logo:hover .l:nth-child(5){color:var(--gold);transition-delay:.16s;}
+  .nav-logo:hover .l:nth-child(6){color:var(--gold);transition-delay:.20s;}
+  .nav-logo:hover .l:nth-child(7){color:var(--gold);transition-delay:.24s;}
+  .nav-logo:hover .l:nth-child(8){color:var(--gold);transition-delay:.28s;}
+  .nav-links{display:flex;gap:2.5rem;align-items:center;}
+  .nav-links a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color .3s;font-weight:400;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-links a.caudales-link{color:var(--gold);border:1px solid rgba(200,169,110,.4);padding:.4rem .9rem;}
+  .nav-links a.caudales-link:hover{background:rgba(200,169,110,.1);}
+  .nav-right{display:flex;align-items:center;gap:1.5rem;}
+  .nav-lang{display:flex;gap:.3rem;}
+  .lang-btn{background:none;border:none;cursor:pointer;color:var(--stone);font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;padding:.3rem .5rem;transition:color .3s;text-transform:uppercase;}
+  .lang-btn.active,.lang-btn:hover{color:var(--gold);}
+  .lang-divider{color:var(--bark);align-self:center;font-size:.7rem;}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem;}
+  .nav-hamburger span{display:block;width:24px;height:1px;background:var(--cream);transition:all .3s;}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .mobile-menu{display:none;position:fixed;top:calc(var(--announce-h) + var(--nav-h));left:0;right:0;background:rgba(28,26,21,.98);backdrop-filter:blur(20px);z-index:99;padding:2.5rem 2rem;flex-direction:column;gap:0;border-bottom:1px solid rgba(200,169,110,.1);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:1.5rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--cream);text-decoration:none;padding:1rem 0;border-bottom:1px solid rgba(200,169,110,.08);transition:color .3s;}
+  .mobile-menu a:hover,.mobile-menu a.caudales-link{color:var(--gold);}
+  .mobile-lang{display:flex;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(200,169,110,.1);}
+  .mobile-lang button{background:none;border:1px solid rgba(200,169,110,.2);color:var(--stone);font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.2rem;cursor:pointer;transition:all .3s;}
+  .mobile-lang button.active{color:var(--gold);border-color:var(--gold);}
+
+  .hero{min-height:calc(100vh - var(--announce-h) - var(--nav-h));display:flex;flex-direction:column;justify-content:flex-end;padding:4rem 4rem 5rem;position:relative;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0D0E08 0%,#1a1f10 30%,#1C2218 60%,#0F1209 100%);}
+  .hero-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(74,82,64,.25) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 20% 70%,rgba(200,169,110,.08) 0%,transparent 60%);}
+  .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:breathe 8s ease-in-out infinite;}
+  .hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(74,82,64,.3) 0%,transparent 70%);top:-100px;right:-100px;}
+  .hero-orb-2{width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,.12) 0%,transparent 70%);bottom:100px;left:200px;animation-delay:-3s;}
+  @keyframes breathe{0%,100%{transform:scale(1) translate(0,0);opacity:.6;}50%{transform:scale(1.15) translate(20px,-20px);opacity:1;}}
+  .hero-lines{position:absolute;right:4rem;top:0;bottom:0;width:1px;display:flex;flex-direction:column;justify-content:center;gap:6px;opacity:.15;}
+  .hero-lines span{display:block;width:1px;background:var(--gold);animation:lineGrow 2s ease forwards;transform-origin:top;transform:scaleY(0);}
+  .hero-lines span:nth-child(1){height:80px;animation-delay:.2s;}
+  .hero-lines span:nth-child(2){height:40px;animation-delay:.4s;}
+  .hero-lines span:nth-child(3){height:120px;animation-delay:.6s;}
+  @keyframes lineGrow{to{transform:scaleY(1);}}
+
+  .hero-caudales-badge{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.8rem;padding:.45rem 1rem;border:1px solid rgba(200,169,110,.35);background:rgba(200,169,110,.06);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;text-decoration:none;transition:background .3s;opacity:0;animation:fadeUp 1s .1s forwards;width:fit-content;}
+  .hero-caudales-badge:hover{background:rgba(200,169,110,.12);}
+  .hero-caudales-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
+  .hero-eyebrow{position:relative;z-index:1;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp 1s .3s forwards;}
+  .hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+  .hero-title{position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.9;margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s .5s forwards;}
+  .hero-title .line-1{font-size:clamp(2rem,5vw,5rem);display:block;color:var(--cream);line-height:1.2;}
+  .hero-gold{color:var(--gold);font-style:italic;}
+  .hero-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;opacity:0;animation:fadeUp 1s .8s forwards;}
+  .hero-desc{max-width:380px;font-size:.9rem;line-height:1.8;color:var(--stone);}
+  .hero-cta{display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;flex-shrink:0;}
+  .btn-primary{display:inline-flex;align-items:center;gap:.8rem;padding:1rem 2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;transition:all .4s;position:relative;overflow:hidden;}
+  .btn-primary::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);transition:transform .4s;z-index:-1;}
+  .btn-primary:hover{color:var(--soil);}
+  .btn-primary:hover::before{transform:translateX(0);}
+  .scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--stone);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;animation:bounce 2s ease-in-out infinite;}
+  .scroll-indicator::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--stone),transparent);}
+  @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+  .marquee-strip{background:var(--gold);padding:.8rem 0;overflow:hidden;}
+  .marquee-track{display:flex;gap:4rem;animation:marquee 20s linear infinite;width:max-content;}
+  .marquee-track span{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--soil);font-weight:500;white-space:nowrap;}
+  .marquee-sep{color:var(--bark);opacity:.4;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  section{padding:8rem 4rem;}
+  .section-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:4rem;}
+  .section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold);opacity:.4;}
+
+  .about{background:var(--bark);position:relative;overflow:hidden;}
+  .about::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,82,64,.15) 0%,transparent 70%);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;}
+  .about-left h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:2.5rem;}
+  .about-left h2 em{color:var(--gold);font-style:italic;}
+  .about-left p{font-size:1rem;line-height:1.9;color:var(--stone);margin-bottom:1.5rem;}
+  .about-right{padding-top:2rem;}
+  .values-title{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:1.5rem;}
+  .value-item{padding:1.5rem 0;border-bottom:1px solid rgba(200,169,110,.1);display:flex;gap:1.5rem;align-items:flex-start;}
+  .value-num{font-family:'Cormorant Garamond',serif;font-size:.75rem;color:var(--gold);opacity:.6;margin-top:.2rem;min-width:1.5rem;}
+  .value-text{font-size:.85rem;line-height:1.7;color:var(--stone);}
+
+  .services{background:var(--soil);}
+  .services-intro{margin-bottom:4rem;}
+  .services-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:1rem;}
+  .services-heading em{color:var(--gold);font-style:italic;}
+  .services-sub{font-size:.95rem;line-height:1.8;color:var(--stone);max-width:600px;}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,169,110,.1);border:1px solid rgba(200,169,110,.1);}
+  .service-card{padding:3.5rem 2.5rem;background:var(--soil);transition:background .4s;position:relative;overflow:hidden;}
+  .service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .4s;transform-origin:left;}
+  .service-card:hover{background:var(--bark);}
+  .service-card:hover::before{transform:scaleX(1);}
+  .service-icon{width:48px;height:48px;margin-bottom:2rem;opacity:.7;}
+  .service-num{font-size:2.5rem;color:rgba(200,169,110,.12);position:absolute;top:1.5rem;right:2rem;line-height:1;}
+  .service-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--cream);margin-bottom:1rem;line-height:1.2;}
+  .service-desc{font-size:.82rem;line-height:1.8;color:var(--stone);margin-bottom:2rem;}
+  .service-fee{font-size:.7rem;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;}
+
+  .projects{background:var(--bark);}
+  .projects-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end;}
+  .projects-intro h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:300;line-height:1.1;color:var(--cream);}
+  .projects-intro h2 em{color:var(--gold);font-style:italic;}
+  .projects-intro p{font-size:.9rem;line-height:1.8;color:var(--stone);}
+  .projects-grid{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:2px;}
+  .proj-card{position:relative;overflow:hidden;background:var(--soil);aspect-ratio:4/3;display:block;text-decoration:none;}
+  .proj-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.65) saturate(.85);transition:transform .8s ease,filter .6s;z-index:1;}
+  .proj-card:hover .proj-card-img{transform:scale(1.05);filter:brightness(.75) saturate(1);}
+  .proj-visual{z-index:0;}
+  .proj-card-overlay{z-index:2;}
+  .proj-card:nth-child(1){grid-row:span 2;aspect-ratio:auto;}
+  .proj-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,21,.9) 0%,transparent 60%);padding:2.5rem;display:flex;flex-direction:column;justify-content:flex-end;}
+  .proj-tag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+  .proj-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--cream);line-height:1.2;}
+  .proj-meta{font-size:.72rem;color:var(--stone);margin-top:.5rem;}
+  .proj-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;}
+  .pv-1{background:linear-gradient(135deg,#1a2012,#2d3a20,#1a2312);}
+  .pv-2{background:linear-gradient(135deg,#12191a,#1f2e2e,#141e1e);}
+  .pv-3{background:linear-gradient(135deg,#1a1612,#2e2820,#1a1510);}
+  .pv-organic{position:absolute;inset:0;opacity:.4;background-image:radial-gradient(ellipse 70% 70% at 30% 40%,rgba(74,82,64,.6) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 70% 70%,rgba(200,169,110,.2) 0%,transparent 50%);}
+
+  .caudales{background:linear-gradient(170deg,#0D1209,#111A0E,#0A0F08);position:relative;overflow:hidden;}
+  .caudales::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+  .caudales-inner{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;}
+  .caudales-badge{display:inline-flex;align-items:center;gap:.8rem;padding:.5rem 1.2rem;border:1px solid rgba(200,169,110,.4);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;}
+  .caudales-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
+  .caudales h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5rem);font-weight:300;line-height:1.3;color:var(--cream);margin-bottom:1.5rem;}
+  .caudales h2 em{color:var(--gold);font-style:italic;}
+  .caudales-sub{font-size:.9rem;line-height:1.8;color:var(--stone);margin-bottom:3rem;}
+  .caudales-specs{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem;}
+  .spec{padding:1.2rem;border:1px solid rgba(200,169,110,.12);background:rgba(200,169,110,.03);}
+  .spec-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:.3rem;}
+  .spec-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);}
+  .caudales-visual{position:relative;}
+  .caudales-img-main{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,#0f1f0c,#162810,#0c1a09);position:relative;overflow:hidden;}
+  .caudales-gyroid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .gyroid-svg{width:80%;height:80%;opacity:.3;}
+  .caudales-float{position:absolute;bottom:-2rem;left:-3rem;width:180px;background:var(--gold);padding:1.5rem;}
+  .caudales-float p{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--soil);line-height:1;}
+  .caudales-float span{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bark);display:block;margin-top:.3rem;}
+
+  .team{background:var(--soil);}
+  .team h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:300;color:var(--cream);margin-bottom:5rem;max-width:500px;line-height:1.1;}
+  .team h2 em{color:var(--gold);font-style:italic;}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;}
+  .team-photo{width:100%;aspect-ratio:3/4;background:var(--bark);position:relative;overflow:hidden;margin-bottom:1.5rem;}
+  .team-photo-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .team-img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.6s ease,filter 0.6s ease;}
+  .team-card:hover .team-img{transform:scale(1.04);filter:brightness(0.95) saturate(1);}
+  .tp-1{background:linear-gradient(160deg,#1a1f10,#242e18);}
+  .tp-2{background:linear-gradient(160deg,#151f1a,#1d2c24);}
+  .tp-3{background:linear-gradient(160deg,#1a1a10,#282815);}
+  .team-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);}
+  .team-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--cream);margin-bottom:.3rem;}
+  .team-role{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;}
+  .team-bio{font-size:.8rem;line-height:1.7;color:var(--stone);}
+  .team-creds{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(200,169,110,.1);display:flex;flex-direction:column;gap:.3rem;}
+  .cred{font-size:.7rem;color:var(--lichen);display:flex;align-items:center;gap:.5rem;}
+  .cred::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.6;flex-shrink:0;}
+
+  .contact{background:var(--bark);position:relative;overflow:hidden;}
+  .contact::after{content:'ESTROMAS';position:absolute;bottom:-2rem;right:-2rem;font-family:'Cormorant Garamond',serif;font-size:12rem;font-weight:300;color:rgba(200,169,110,.03);letter-spacing:-.02em;user-select:none;white-space:nowrap;}
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;position:relative;z-index:1;}
+  .contact h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:2rem;}
+  .contact h2 em{color:var(--gold);font-style:italic;}
+  .contact-desc{font-size:.9rem;line-height:1.8;color:var(--stone);margin-bottom:3rem;}
+  .contact-links{display:flex;flex-direction:column;gap:1rem;}
+  .contact-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--stone);font-size:.85rem;padding:1rem;border:1px solid rgba(200,169,110,.08);transition:all .3s;}
+  .contact-link:hover{color:var(--gold);border-color:rgba(200,169,110,.3);background:rgba(200,169,110,.03);}
+  .contact-link-icon{width:36px;height:36px;border:1px solid rgba(200,169,110,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--gold);flex-shrink:0;}
+  .contact-form{display:flex;flex-direction:column;gap:1rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .form-group{display:flex;flex-direction:column;gap:.5rem;}
+  .form-group label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);}
+  .form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.15);padding:.9rem 1rem;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none;transition:border-color .3s;resize:vertical;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+  .form-group select option{background:var(--bark);}
+  .btn-submit{background:var(--gold);border:none;padding:1rem 2.5rem;color:var(--soil);font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;align-self:flex-start;transition:all .3s;}
+  .btn-submit:hover{background:var(--gold-light);}
+
+  footer{background:var(--soil);padding:3rem 4rem;border-top:1px solid rgba(200,169,110,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:.3em;text-transform:uppercase;color:var(--stone);}
+  .footer-logo span{color:var(--gold);}
+  .footer-copy{font-size:.7rem;color:rgba(184,176,160,.4);letter-spacing:.05em;}
+  .footer-social{display:flex;gap:2rem;}
+  .footer-social a{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color .3s;}
+  .footer-social a:hover{color:var(--gold);}
+
+  .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;overflow:hidden;background:#25D366;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.3);text-decoration:none;color:#fff;transition:all .4s;max-width:52px;}
+  .wa-float:hover{max-width:280px;}
+  .wa-icon{width:52px;height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .wa-icon svg{width:26px;height:26px;}
+  .wa-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding-right:1.2rem;font-weight:500;opacity:0;transition:opacity .3s .1s;}
+  .wa-float:hover .wa-label{opacity:1;}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;}
+  .reveal-delay-2{transition-delay:.2s;}
+  .reveal-delay-3{transition-delay:.3s;}
+
+  body.lang-en [data-es]{display:none;}
+  body.lang-en [data-en]{display:block;}
+  body.lang-es [data-en]{display:none;}
+  body.lang-es [data-es]{display:block;}
+  body.lang-en span[data-es]{display:none;}
+  body.lang-en span[data-en]{display:inline;}
+  body.lang-es span[data-en]{display:none;}
+  body.lang-es span[data-es]{display:inline;}
+
+  @media(max-width:768px){
+    :root{--announce-h:36px;--nav-h:64px;}
+    body{cursor:auto;}
+    .announce p{font-size:.58rem;letter-spacing:.06em;}
+    .announce a{display:none;}
+    nav{padding:0 1.5rem;}
+    .nav-links,.nav-right{display:none;}
+    .nav-hamburger{display:flex;}
+    /* Hero */
+    .hero{padding:2rem 1.5rem 3.5rem;min-height:calc(100svh - var(--announce-h) - var(--nav-h));}
+    .hero-orb-1{width:300px;height:300px;}
+    .hero-orb-2,.hero-lines{display:none;}
+    .hero-caudales-badge{font-size:.56rem;padding:.35rem .75rem;margin-bottom:1.5rem;}
+    .hero-eyebrow{font-size:.56rem;letter-spacing:.15em;}
+    .hero-eyebrow::before{width:20px;}
+    .hero-title{margin-bottom:1.8rem;}
+    .hero-title .line-1{font-size:clamp(1.1rem,4.2vw,1.6rem) !important;line-height:1.35 !important;}
+    .hero-gold{font-size:inherit !important;}
+    .hero-bottom{flex-direction:column;align-items:flex-start;gap:1.5rem;}
+    .hero-desc{max-width:100%;font-size:.85rem;}
+    .hero-cta{align-items:flex-start;width:100%;}
+    .btn-primary{width:100%;justify-content:center;}
+    .scroll-indicator{display:none;}
+    /* Marquee */
+    .marquee-track{gap:2rem;}
+    .marquee-track span{font-size:.58rem;}
+    /* Sections */
+    section{padding:4rem 1.5rem;}
+    .section-label{margin-bottom:2.5rem;}
+    /* About */
+    .about-grid{grid-template-columns:1fr;gap:3rem;}
+    .about-right{padding-top:0;}
+    .about-left h2{font-size:clamp(1.8rem,6vw,2.8rem);}
+    /* Services */
+    .services-grid{grid-template-columns:1fr;}
+    .service-card{padding:2.5rem 1.8rem;}
+    /* Projects */
+    .projects-intro{grid-template-columns:1fr;gap:1.5rem;margin-bottom:2.5rem;}
+    .projects-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+    .proj-card{aspect-ratio:4/3 !important;grid-row:auto !important;}
+    .proj-title{font-size:1.3rem;}
+    /* Caudales */
+    .caudales-inner{grid-template-columns:1fr;gap:2.5rem;}
+    .caudales-visual{display:none;}
+    .caudales-specs{grid-template-columns:1fr 1fr;gap:.8rem;}
+    .caudales h2{font-size:clamp(2rem,7vw,3rem);}
+    /* Team */
+    .team h2{margin-bottom:3rem;font-size:clamp(1.8rem,6vw,2.8rem);}
+    .team-grid{grid-template-columns:1fr;gap:3rem;}
+    .team-photo{aspect-ratio:3/4;}
+    /* Contact */
+    .contact-inner{grid-template-columns:1fr;gap:3rem;}
+    .contact::after{display:none;}
+    .form-row{grid-template-columns:1fr;}
+    /* Footer */
+    footer{flex-direction:column;align-items:flex-start;padding:2.5rem 1.5rem;gap:1.2rem;}
+    .footer-social{gap:1.5rem;}
+    /* WhatsApp */
+    .wa-float{max-width:52px;bottom:1.5rem;right:1.5rem;}
+    .wa-label{display:none;}
+  }
+  @media(max-width:480px){
+    section{padding:3rem 1.2rem;}
+    .hero-title .line-1{font-size:clamp(1rem,3.8vw,1.4rem) !important;line-height:1.3 !important;}
+    .about-left h2{font-size:clamp(1.5rem,5.5vw,2.2rem);}
+    .proj-card{aspect-ratio:16/9 !important;}
+    .service-title{font-size:1.3rem;}
+  }
+
+  @media(min-width:769px) and (max-width:1024px){
+    nav{padding:0 2.5rem;}
+    .nav-links{gap:1.5rem;}
+    .nav-links a{font-size:.65rem;}
+    section{padding:6rem 2.5rem;}
+    .hero{padding:2rem 2.5rem 4rem;}
+    .about-grid{gap:4rem;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .projects-intro{grid-template-columns:1fr;}
+    .projects-grid{grid-template-columns:1fr 1fr;}
+    .proj-card:nth-child(1){grid-row:auto;aspect-ratio:4/3;}
+    .caudales-inner{gap:4rem;}
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-inner{gap:4rem;}
+    footer{padding:2.5rem;}
+  }
+</style>
+</head>
+<body class="lang-es">
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="announce" id="announce">
+  <div class="announce-dot"></div>
+  <p data-es>🌿 Caudales — Departamentos en preventa · Cuenca &nbsp;·&nbsp; <a href="#caudales">Ver proyecto →</a></p>
+  <p data-en>🌿 Caudales — Residences now in pre-sale · Cuenca &nbsp;·&nbsp; <a href="#caudales">View project →</a></p>
+  <button class="announce-close" onclick="closeAnnounce()">✕</button>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><span class="l">E</span><span class="l">S</span><span class="l">T</span><span class="l">R</span><span class="l">O</span><span class="l">M</span><span class="l">A</span><span class="l">S</span></a>
+  <div class="nav-links">
+    <a href="#nosotros" data-es>Estudio</a><a href="#nosotros" data-en>Studio</a>
+    <a href="#servicios" data-es>Servicios</a><a href="#servicios" data-en>Services</a>
+    <a href="#proyectos" data-es>Proyectos</a><a href="#proyectos" data-en>Projects</a>
+    <a href="#equipo" data-es>Equipo</a><a href="#equipo" data-en>Team</a>
+    <a href="#caudales" class="caudales-link">Caudales</a>
+    <a href="#contacto" data-es>Contacto</a><a href="#contacto" data-en>Contact</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <span class="lang-divider">|</span>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="closeMenu()" data-es>Estudio</a><a href="#nosotros" onclick="closeMenu()" data-en>Studio</a>
+  <a href="#servicios" onclick="closeMenu()" data-es>Servicios</a><a href="#servicios" onclick="closeMenu()" data-en>Services</a>
+  <a href="#proyectos" onclick="closeMenu()" data-es>Proyectos</a><a href="#proyectos" onclick="closeMenu()" data-en>Projects</a>
+  <a href="#equipo" onclick="closeMenu()" data-es>Equipo</a><a href="#equipo" onclick="closeMenu()" data-en>Team</a>
+  <a href="#caudales" class="caudales-link" onclick="closeMenu()">Caudales ●</a>
+  <a href="#contacto" onclick="closeMenu()" data-es>Contacto</a><a href="#contacto" onclick="closeMenu()" data-en>Contact</a>
+  <div class="mobile-lang">
+    <button class="active" onclick="setLang('es');closeMenu()">ES — Español</button>
+    <button onclick="setLang('en');closeMenu()">EN — English</button>
+  </div>
+</div>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-lines"><span></span><span></span><span></span></div>
+  <a href="#caudales" class="hero-caudales-badge">
+    <span data-es>Caudales — Preventa activa · Cuenca</span>
+    <span data-en>Caudales — Pre-sale now open · Cuenca</span>
+  </a>
+  <p class="hero-eyebrow">
+    <span data-es>Cuenca, Ecuador — Arquitectura Eco-Céntrica</span>
+    <span data-en>Cuenca, Ecuador — Eco-Centric Architecture</span>
+  </p>
+  <h1 class="hero-title">
+    <span class="line-1" data-es>Donde el diseño se convierte en un puente entre las personas <em class="hero-gold">y el mundo natural.</em></span>
+    <span class="line-1" data-en>Where design becomes a bridge between people <em class="hero-gold">and the natural world.</em></span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc" data-es>Estudio de arquitectura regenerativa que crea espacios donde la naturaleza y la humanidad coexisten como un solo sistema vivo.</p>
+    <p class="hero-desc" data-en>A regenerative architecture studio creating spaces where nature and humanity coexist as a single living system.</p>
+    <div class="hero-cta">
+      <a href="#proyectos" class="btn-primary">
+        <span data-es>Ver Proyectos</span><span data-en>View Projects</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+      </a>
+      <div class="scroll-indicator"><span data-es>Explorar</span><span data-en>Explore</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Cuenca · Ecuador</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span><span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Cuenca · Ecuador</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<section class="about" id="nosotros">
+  <p class="section-label reveal"><span data-es>◆ El Estudio</span><span data-en>◆ The Studio</span></p>
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <h2 data-es>Estromas: los tejidos invisibles de la arquitectura que <em>sostienen la vida.</em></h2>
+      <h2 data-en>Estromas: the invisible tissues of architecture that <em>sustain life.</em></h2>
+      <p data-es>Estromas es un estudio de diseño arquitectónico que crea espacios que abrazan las oportunidades de la naturaleza y el territorio, generando impacto ambiental y social positivo.</p>
+      <p data-en>Estromas is an architectural design studio that creates spaces embracing the opportunities of nature and territory, generating positive environmental and social impact.</p>
+      <p data-es>Trabajamos con materiales locales, sistemas vivos y tecnologías emergentes para diseñar espacios que no solo minimizan el daño, sino que activamente regeneran los ecosistemas que habitan.</p>
+      <p data-en>We work with local materials, living systems, and emerging technologies to design spaces that don't just minimize harm — but actively regenerate the ecosystems they inhabit.</p>
+    </div>
+    <div class="about-right reveal reveal-delay-2">
+      <p class="values-title" data-es>Los valores que guían nuestro proceso</p>
+      <p class="values-title" data-en>The values that guide our process</p>
+      <div class="value-item"><span class="value-num">◆</span><p class="value-text" data-es>Concebimos naturaleza y humanidad como una sola unidad viva.</p><p class="value-text" data-en>We conceive nature and humanity as a single living unity.</p></div>
+      <div class="value-item"><span class="value-num">◆</span><p class="value-text" data-es>Diseñamos con y para todo lo que está vivo, vital e interconectado.</p><p class="value-text" data-en>We design with and for everything that is alive, vital, and interconnected.</p></div>
+      <div class="value-item"><span class="value-num">◆</span><p class="value-text" data-es>Nos guía la sabiduría cultural y ecológica arraigada en cada territorio.</p><p class="value-text" data-en>We are guided by cultural and ecological wisdom rooted in each territory.</p></div>
+      <div class="value-item"><span class="value-num">◆</span><p class="value-text" data-es>Buscamos el bienestar de los ecosistemas por encima de los intereses individuales.</p><p class="value-text" data-en>We seek ecosystem wellbeing above individual interests.</p></div>
+      <div class="value-item"><span class="value-num">◆</span><p class="value-text" data-es>Tejemos ciencia y arte en un solo acto continuo de creación.</p><p class="value-text" data-en>We weave science and art into one continuous act of creation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <p class="section-label reveal"><span data-es>◆ Servicios</span><span data-en>◆ Services</span></p>
+  <div class="services-intro reveal">
+    <h2 class="services-heading" data-es>Crea con <em>nosotros</em></h2>
+    <h2 class="services-heading" data-en>Create <em>with us</em></h2>
+    <p class="services-sub" data-es>Trabajamos con propietarios privados, instituciones, desarrolladores y organizaciones ambientales en tres líneas principales.</p>
+    <p class="services-sub" data-en>We work with private owners, institutions, developers, and environmental organizations across three main lines.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">◆</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M8 40 L24 8 L40 40" stroke="#C8A96E" stroke-width="1" fill="none"/><path d="M14 28 L34 28" stroke="#C8A96E" stroke-width="0.8"/><circle cx="24" cy="8" r="2" fill="#C8A96E" opacity="0.5"/></svg>
+      <h3 class="service-title" data-es>Arquitectura &amp; Diseño Eco-Céntrico</h3><h3 class="service-title" data-en>Architecture &amp; Eco-Centric Design</h3>
+      <p class="service-desc" data-es>Trabajamos en vivienda, edificios culturales, intervenciones en espacios naturales y proyectos de uso mixto. Cada proyecto parte de un análisis riguroso del sitio — clima, topografía, materiales disponibles, biodiversidad local — y se desarrolla con diseño paramétrico y técnicas de bioconstrucción.</p>
+      <p class="service-desc" data-en>We work on housing, cultural buildings, interventions in natural spaces, and mixed-use projects. Each project begins with a rigorous site analysis — climate, topography, available materials, local biodiversity — and is developed with parametric design and bioconstruction techniques.</p>
+      <p class="service-fee" data-es>Honorarios desde 8% del presupuesto de obra</p><p class="service-fee" data-en>Fees from 8% of construction budget</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-num">◆</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" stroke="#C8A96E" stroke-width="0.8" fill="none"/><path d="M6 20 L42 20 M6 32 L42 32 M18 6 L18 42 M30 6 L30 42" stroke="#C8A96E" stroke-width="0.5" opacity="0.4"/><circle cx="24" cy="26" r="6" stroke="#C8A96E" stroke-width="0.8" fill="none"/></svg>
+      <h3 class="service-title" data-es>Urbanismo &amp; Desarrollo Sostenible</h3><h3 class="service-title" data-en>Urban Planning &amp; Sustainable Development</h3>
+      <p class="service-desc" data-es>Diseñamos planes urbanos, corredores ecológicos y estrategias de desarrollo que integran biodiversidad, gestión del agua y movilidad. Trabajamos con municipios, desarrolladores y comunidades para crear territorios que crecen sin destruir lo que los hace valiosos.</p>
+      <p class="service-desc" data-en>We design urban plans, ecological corridors, and development strategies that integrate biodiversity, water management, and mobility. We work with municipalities, developers, and communities to create territories that grow without destroying what makes them valuable.</p>
+      <p class="service-fee" data-es>Consultoría desde $3,500 USD</p><p class="service-fee" data-en>Consulting from $3,500 USD</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-num">◆</span>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M24 4 C24 4 8 16 8 28 C8 36.8 15.2 44 24 44 C32.8 44 40 36.8 40 28 C40 16 24 4 24 4Z" stroke="#C8A96E" stroke-width="0.8" fill="none"/><path d="M16 30 C18 24 22 20 24 18 C26 20 30 24 32 30" stroke="#C8A96E" stroke-width="0.6" fill="none" opacity="0.5"/></svg>
+      <h3 class="service-title" data-es>Diseño Eco-Turístico</h3><h3 class="service-title" data-en>Eco-Tourism Design</h3>
+      <p class="service-desc" data-es>Diseñamos experiencias turísticas — glamping, senderos interpretativos, centros de visitantes, santuarios de fauna — donde la arquitectura amplifica el valor del entorno natural en lugar de competir con él. Cada proyecto incluye un estudio de impacto ambiental y estrategias de mínima huella.</p>
+      <p class="service-desc" data-en>We design tourism experiences — glamping, interpretive trails, visitor centers, wildlife sanctuaries — where architecture amplifies the value of the natural environment rather than competing with it. Each project includes an environmental impact study and minimal footprint strategies.</p>
+      <p class="service-fee" data-es>Proyectos desde $20,000 USD</p><p class="service-fee" data-en>Projects from $20,000 USD</p>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="proyectos">
+  <div class="projects-intro">
+    <div class="reveal">
+      <p class="section-label"><span data-es>◆ Proyectos</span><span data-en>◆ Projects</span></p>
+      <h2 data-es>Espacios que <em>regeneran</em> el mundo.</h2><h2 data-en>Spaces that <em>regenerate</em> the world.</h2>
+    </div>
+    <p class="reveal reveal-delay-1" style="font-size:.9rem;line-height:1.8;color:var(--stone)" data-es>Cada proyecto es una investigación en materiales locales, sistemas vivos y tecnología al servicio del ecosistema. No construimos edificios — creamos hábitats.</p>
+    <p class="reveal reveal-delay-1" style="font-size:.9rem;line-height:1.8;color:var(--stone)" data-en>Each project is an investigation into local materials, living systems, and technology in service of the ecosystem. We don't build buildings — we create habitats.</p>
+  </div>
+  <div class="projects-grid reveal">
+    <a href="Symbiosis.html" class="proj-card">
+      <!-- 📷 SYMBIOSIS — cambia el src por tu foto de portada -->
+      <img src="proyectos\symbiosis\03_pasillo_bioclimatico.webp" class="proj-card-img" onerror="this.style.display='none'">
+      <div class="proj-visual pv-1"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="60%" opacity="0.25"><ellipse cx="100" cy="120" rx="80" ry="60" stroke="#C8A96E" stroke-width="0.5" fill="none"/><path d="M40 120 Q100 40 160 120" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
+      <div class="proj-card-overlay"><p class="proj-tag" data-es>Bioconstrucción · Cuenca</p><p class="proj-tag" data-en>Bioconstruction · Cuenca</p><h3 class="proj-title">Symbiosis<br><em>experi(ence)ment</em></h3><p class="proj-meta" data-es>Bioparque Amaru · 53 m² · Construido</p><p class="proj-meta" data-en>Bioparque Amaru · 53 m² · Built</p></div>
+    </a>
+    <a href="testudines.html" class="proj-card">
+      <!-- 📷 TESTUDINES — cambia el src por tu foto de portada -->
+      <img src="proyectos/TESTUDINES/01_habitat_interior_model.webp" class="proj-card-img" onerror="this.style.display='none'">
+      <div class="proj-visual pv-2"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="55%" opacity="0.2"><path d="M100 20 Q160 60 160 120 Q160 170 100 180 Q40 170 40 120 Q40 60 100 20Z" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
+      <div class="proj-card-overlay"><p class="proj-tag" data-es>Santuario · Cuenca</p><p class="proj-tag" data-en>Sanctuary · Cuenca</p><h3 class="proj-title">Testudines<br><em>living shell</em></h3><p class="proj-meta" data-es>Bioparque Amaru · 250 m² · Construido</p><p class="proj-meta" data-en>Bioparque Amaru · 250 m² · Built</p></div>
+    </a>
+    <a href="wings-roots.html" class="proj-card">
+      <!-- 📷 WINGS & ROOTS — cambia el src por tu foto de portada -->
+      <img src="proyectos/WINGS-ROOTS/portada.jpg" class="proj-card-img" onerror="this.style.display='none'">
+      <div class="proj-visual pv-3"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="55%" opacity="0.2"><rect x="30" y="60" width="140" height="100" stroke="#C8A96E" stroke-width="0.5" fill="none"/><path d="M30 60 Q100 20 170 60" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
+      <div class="proj-card-overlay"><p class="proj-tag" data-es>Rooftop · Centro Histórico</p><p class="proj-tag" data-en>Rooftop · Historic Center</p><h3 class="proj-title">Wings &amp; Roots<br><em>páramo rooftop</em></h3><p class="proj-meta" data-es>Cuenca · 250 m² · En desarrollo</p><p class="proj-meta" data-en>Cuenca · 250 m² · In development</p></div>
+    </a>
+  </div>
+</section>
+
+<section class="caudales" id="caudales">
+  <div class="caudales-inner">
+    <div class="reveal">
+      <p class="section-label" style="margin-bottom:1.5rem"><span data-es>◆ Proyecto en Preventa</span><span data-en>◆ Pre-Sale Project</span></p>
+      <span class="caudales-badge" data-es>Preventa activa · Cuenca, Ecuador</span>
+      <span class="caudales-badge" data-en>Active pre-sale · Cuenca, Ecuador</span>
+      <h2 data-es><em>Caudales</em><br>Departamentos</h2><h2 data-en><em>Caudales</em><br>Residences</h2>
+      <p class="caudales-sub" data-es>Un edificio concebido como ecosistema vivo en San Joaquín, Cuenca. Jardines de agua contemplativos, geometría gyroid en cerámica que crea hábitats para la biodiversidad, y terrazas agrícolas que recuperan la memoria productiva del lugar.</p>
+      <p class="caudales-sub" data-en>A building conceived as a living ecosystem in San Joaquín, Cuenca. Contemplative water gardens, gyroid ceramic geometry creating biodiversity habitats, and agricultural terraces recovering the site's productive memory.</p>
+      <div class="caudales-specs">
+        <div class="spec"><p class="spec-num">18</p><p class="spec-label" data-es>Unidades</p><p class="spec-label" data-en>Units</p></div>
+        <div class="spec"><p class="spec-num">2.000</p><p class="spec-label">m² <span data-es>construidos</span><span data-en>built</span></p></div>
+        <div class="spec"><p class="spec-num">6</p><p class="spec-label" data-es>Tipologías</p><p class="spec-label" data-en>Unit Types</p></div>
+        <div class="spec"><p class="spec-num">12</p><p class="spec-label" data-es>Parqueaderos</p><p class="spec-label" data-en>Parking</p></div>
+      </div>
+      <a href="#contacto" class="btn-primary"><span data-es>Solicitar Información</span><span data-en>Request Information</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2"/></svg></a>
+    </div>
+    <div class="caudales-visual reveal reveal-delay-2">
+      <div class="caudales-img-main">
+        <div class="caudales-gyroid">
+          <svg class="gyroid-svg" viewBox="0 0 400 500" fill="none">
+            <rect x="60" y="80" width="280" height="380" stroke="#C8A96E" stroke-width="0.5" fill="none"/>
+            <g opacity="0.6">
+              <path d="M80 120 Q100 100 120 120 Q140 140 160 120 Q180 100 200 120 Q220 140 240 120 Q260 100 280 120 Q300 140 320 120" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 150 Q100 130 120 150 Q140 170 160 150 Q180 130 200 150 Q220 170 240 150 Q260 130 280 150 Q300 170 320 150" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 180 Q100 160 120 180 Q140 200 160 180 Q180 160 200 180 Q220 200 240 180 Q260 160 280 180 Q300 200 320 180" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 210 Q100 190 120 210 Q140 230 160 210 Q180 190 200 210 Q220 230 240 210 Q260 190 280 210 Q300 230 320 210" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 240 Q100 220 120 240 Q140 260 160 240 Q180 220 200 240 Q220 260 240 240 Q260 220 280 240 Q300 260 320 240" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 270 Q100 250 120 270 Q140 290 160 270 Q180 250 200 270 Q220 290 240 270 Q260 250 280 270 Q300 290 320 270" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 300 Q100 280 120 300 Q140 320 160 300 Q180 280 200 300 Q220 320 240 300 Q260 280 280 300 Q300 320 320 300" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 330 Q100 310 120 330 Q140 350 160 330 Q180 310 200 330 Q220 350 240 330 Q260 310 280 330 Q300 350 320 330" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+              <path d="M80 360 Q100 340 120 360 Q140 380 160 360 Q180 340 200 360 Q220 380 240 360 Q260 340 280 360 Q300 380 320 360" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
+            </g>
+            <g opacity="0.15" stroke="#C8A96E" stroke-width="0.3"><line x1="60" y1="140" x2="340" y2="140"/><line x1="60" y1="200" x2="340" y2="200"/><line x1="60" y1="260" x2="340" y2="260"/><line x1="60" y1="320" x2="340" y2="320"/><line x1="60" y1="380" x2="340" y2="380"/></g>
+            <ellipse cx="200" cy="80" rx="60" ry="15" stroke="#7A8C6E" stroke-width="0.5" fill="none" opacity="0.6"/>
+            <path d="M170 80 Q185 58 200 65 Q215 45 230 80" stroke="#7A8C6E" stroke-width="0.5" fill="none" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="caudales-float">
+        <p data-es>Desde<br>preventa</p><p data-en>Pre-sale<br>pricing</p>
+        <span data-es>Unidades disponibles</span><span data-en>Units available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="equipo">
+  <p class="section-label reveal"><span data-es>◆ El Equipo</span><span data-en>◆ The Team</span></p>
+  <h2 class="reveal" data-es>Arquitectos con raíces <em>locales</em>,<br>visión <em>global</em>.</h2>
+  <h2 class="reveal" data-en>Architects with <em>local</em> roots,<br><em>global</em> vision.</h2>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-photo"><div class="team-photo-inner tp-1"><img src="equipo/NATI.jpg" alt="Natalia Juca Freire" class="team-img team-img-nati"></div><div class="team-line"></div></div>
+      <p class="team-name">Natalia Juca Freire</p>
+      <p class="team-role" data-es>Co-Fundadora · Directora Creativa y de Investigación</p><p class="team-role" data-en>Co-Founder · Creative & Research Director</p>
+      <p class="team-bio" data-es>Especialista en tecnologías emergentes y pensamiento multiespecie. Combina investigación arquitectónica con estrategia de negocio para crear proyectos de impacto real.</p>
+      <p class="team-bio" data-en>Specialist in emerging technologies and multispecies thinking. Combines architectural research with business strategy to create real-impact projects.</p>
+      <div class="team-creds"><p class="cred">MSc. Emergent Technologies — Architectural Association, London</p><p class="cred">Chevening Award — UK Government</p><p class="cred">MBA — USFQ Quito</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
+    </div>
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-photo"><div class="team-photo-inner tp-2"><img src="equipo/DARI.jpg" alt="Darío Pintado Cajamarca" class="team-img team-img-dari"></div><div class="team-line"></div></div>
+      <p class="team-name">Darío Pintado Cajamarca</p>
+      <p class="team-role" data-es>Co-Fundador · Director Técnico</p><p class="team-role" data-en>Co-Founder · Technical Director</p>
+      <p class="team-bio" data-es>Especialista en dirección de proyectos, combina investigación arquitectónica con estrategia de negocio para crear proyectos de impacto real.</p>
+      <p class="team-bio" data-en>Specialist in project management, combines architectural research with business strategy to create real-impact projects.</p>
+      <div class="team-creds"><p class="cred">MBA — USFQ Quito</p><p class="cred">Bioconstrucción &amp; Eficiencia Energética</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
+    </div>
+    <div class="team-card reveal reveal-delay-2">
+      <div class="team-photo"><div class="team-photo-inner tp-3"><img src="equipo/MATI.jpg" alt="Matías Ávila Quezada" class="team-img team-img-mati"></div><div class="team-line"></div></div>
+      <p class="team-name">Matías Ávila Quezada</p>
+      <p class="team-role" data-es>Director de Diseño</p><p class="team-role" data-en>Design Director</p>
+      <p class="team-bio" data-es>Especialista en diseño computacional y representación arquitectónica. Lidera la visión formal y visual de los proyectos del estudio, integrando procesos digitales, criterios espaciales y comunicación arquitectónica.</p>
+      <p class="team-bio" data-en>Specialist in computational design and architectural representation. Leads the formal and visual vision of the studio's projects, integrating digital processes, spatial criteria, and architectural communication.</p>
+      <div class="team-creds"><p class="cred">Diseño Paramétrico &amp; Digital Fabrication</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-label"><span data-es>◆ Contacto</span><span data-en>◆ Contact</span></p>
+      <h2 data-es>¿Tienes un proyecto <em>en mente</em>?</h2><h2 data-en>Have a project <em>in mind</em>?</h2>
+      <p class="contact-desc" data-es>Trabajamos con propietarios, desarrolladores, operadores de turismo e inversores que entienden que el entorno natural es el mayor activo de cualquier proyecto.</p>
+      <p class="contact-desc" data-en>We work with property owners, developers, tourism operators, and investors who understand that the natural environment is any project's greatest asset.</p>
+      <div class="contact-links">
+        <a href="mailto:info@estromas.com" class="contact-link"><div class="contact-link-icon">@</div>info@estromas.com</a>
+        <a href="https://wa.me/593998351024" class="contact-link"><div class="contact-link-icon">W</div>WhatsApp <span data-es>(respuesta en &lt;2h)</span><span data-en>(reply within 2h)</span></a>
+        <a href="https://www.instagram.com/estromas/" class="contact-link"><div class="contact-link-icon">IG</div>@estromas</a>
+        <a href="https://www.linkedin.com/company/estromas/" class="contact-link"><div class="contact-link-icon">in</div>Estromas — LinkedIn</a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <form class="contact-form" action="https://formspree.io/f/xvzlwayd" method="POST">
+        <input type="hidden" name="_subject" value="Nuevo contacto desde estromas.com">
+        <input type="hidden" name="_next" value="https://estromas.com/?enviado=true">
+        <div class="form-row">
+          <div class="form-group">
+            <label data-es>Nombre</label><label data-en>Name</label>
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-es>¿Qué te interesa?</label><label data-en>What are you interested in?</label>
+          <select name="interes" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Caudales - Compra">Departamentos Caudales — Compra</option>
+            <option value="Caudales - Inversión">Departamentos Caudales — Inversión</option>
+            <option value="Proyecto de Arquitectura">Proyecto de Arquitectura</option>
+            <option value="Consultoría Sostenible">Consultoría Sostenible</option>
+            <option value="Proyecto Eco-Turístico">Proyecto Eco-Turístico</option>
+            <option value="Inversión / Alianza Estratégica">Inversión / Alianza Estratégica</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-es>Mensaje</label><label data-en>Message</label>
+          <textarea rows="4" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          <span data-es>Enviar Mensaje</span><span data-en>Send Message</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-logo">ESTRO<span>MAS</span></p>
+  <p class="footer-copy">© 2026 Estromas · Cuenca, Ecuador</p>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/estromas/">Instagram</a>
+    <a href="https://www.linkedin.com/company/estromas/">LinkedIn</a>
+    <a href="https://estromas.com/">estromas.com</a>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/593998351024" target="_blank" rel="noopener" aria-label="WhatsApp Estromas">
+  <div class="wa-icon">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </div>
+  <span class="wa-label" data-es>Consultar sobre Caudales</span>
+  <span class="wa-label" data-en>Ask about Caudales</span>
+</a>
+
+<script>
+  if(window.matchMedia('(pointer:fine)').matches){
+    const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+    document.addEventListener('mousemove',e=>{
+      cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+      setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);
+    });
+    document.querySelectorAll('a,button,.service-card,.proj-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(2)';ring.style.borderColor='rgba(200,169,110,.6)';});
+      el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(200,169,110,.4)';});
+    });
+  }
+  window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',scrollY>60);});
+  function closeAnnounce(){document.getElementById('announce').style.display='none';document.documentElement.style.setProperty('--announce-h','0px');}
+  function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');const open=m.classList.toggle('open');h.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
+  function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+  function setLang(lang){document.body.className='lang-'+lang;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===lang.toUpperCase()));document.querySelectorAll('.mobile-lang button').forEach((b,i)=>b.classList.toggle('active',(lang==='es'&&i===0)||(lang==='en'&&i===1)));}
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  setLang('es');
+</script>
+</body>
+</html>
