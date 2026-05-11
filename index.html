@@ -16,7 +16,7 @@
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; font-size:16px; }
   body { background:var(--soil); color:var(--cream); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; cursor:none; padding-top:calc(var(--announce-h) + var(--nav-h)); }
- 
+
   /* CURSOR */
   .cursor,.cursor-ring{display:none;}
   @media(pointer:fine){
@@ -24,7 +24,7 @@
     .cursor-ring{display:block;width:32px;height:32px;border:1px solid rgba(200,169,110,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s;}
     body{cursor:none;}
   }
- 
+
   /* ANNOUNCE BAR */
   .announce{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--announce-h);background:var(--gold);display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 3rem;}
   .announce-dot{width:6px;height:6px;border-radius:50%;background:var(--soil);opacity:.5;animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
@@ -32,12 +32,20 @@
   .announce a{color:var(--soil);font-weight:500;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
   .announce-close{position:absolute;right:1rem;background:none;border:none;cursor:pointer;color:var(--soil);opacity:.5;font-size:1rem;padding:.5rem;}
   @keyframes pulse{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.4);}}
- 
+
   /* NAV */
   nav{position:fixed;top:var(--announce-h);left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 4rem;transition:background .4s;}
   nav.scrolled{background:rgba(28,26,21,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,169,110,.1);}
   .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--cream);text-decoration:none;flex-shrink:0;}
-  .nav-logo span{color:var(--gold);}
+  .nav-logo .l{color:var(--cream);transition:color 0.3s;display:inline-block;}
+  .nav-logo:hover .l:nth-child(1){color:var(--gold);transition-delay:0s;}
+  .nav-logo:hover .l:nth-child(2){color:var(--gold);transition-delay:.04s;}
+  .nav-logo:hover .l:nth-child(3){color:var(--gold);transition-delay:.08s;}
+  .nav-logo:hover .l:nth-child(4){color:var(--gold);transition-delay:.12s;}
+  .nav-logo:hover .l:nth-child(5){color:var(--gold);transition-delay:.16s;}
+  .nav-logo:hover .l:nth-child(6){color:var(--gold);transition-delay:.20s;}
+  .nav-logo:hover .l:nth-child(7){color:var(--gold);transition-delay:.24s;}
+  .nav-logo:hover .l:nth-child(8){color:var(--gold);transition-delay:.28s;}
   .nav-links{display:flex;gap:2.5rem;align-items:center;}
   .nav-links a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color .3s;font-weight:400;}
   .nav-links a:hover{color:var(--gold);}
@@ -53,7 +61,7 @@
   .nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
   .nav-hamburger.open span:nth-child(2){opacity:0;}
   .nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
- 
+
   /* MOBILE MENU */
   .mobile-menu{display:none;position:fixed;top:calc(var(--announce-h) + var(--nav-h));left:0;right:0;background:rgba(28,26,21,.98);backdrop-filter:blur(20px);z-index:99;padding:2.5rem 2rem;flex-direction:column;gap:0;border-bottom:1px solid rgba(200,169,110,.1);}
   .mobile-menu.open{display:flex;}
@@ -62,7 +70,7 @@
   .mobile-lang{display:flex;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(200,169,110,.1);}
   .mobile-lang button{background:none;border:1px solid rgba(200,169,110,.2);color:var(--stone);font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.2rem;cursor:pointer;transition:all .3s;}
   .mobile-lang button.active{color:var(--gold);border-color:var(--gold);}
- 
+
   /* HERO */
   .hero{min-height:calc(100vh - var(--announce-h) - var(--nav-h));display:flex;flex-direction:column;justify-content:flex-end;padding:4rem 4rem 5rem;position:relative;overflow:hidden;}
   .hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0D0E08 0%,#1a1f10 30%,#1C2218 60%,#0F1209 100%);}
@@ -77,11 +85,11 @@
   .hero-lines span:nth-child(2){height:40px;animation-delay:.4s;}
   .hero-lines span:nth-child(3){height:120px;animation-delay:.6s;}
   @keyframes lineGrow{to{transform:scaleY(1);}}
- 
+
   .hero-caudales-badge{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.8rem;padding:.45rem 1rem;border:1px solid rgba(200,169,110,.35);background:rgba(200,169,110,.06);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;text-decoration:none;transition:background .3s;opacity:0;animation:fadeUp 1s .1s forwards;width:fit-content;}
   .hero-caudales-badge:hover{background:rgba(200,169,110,.12);}
   .hero-caudales-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
- 
+
   .hero-eyebrow{position:relative;z-index:1;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp 1s .3s forwards;}
   .hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
   .hero-title{position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.9;margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s .5s forwards;}
@@ -100,19 +108,19 @@
   .scroll-indicator::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--stone),transparent);}
   @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
- 
+
   /* MARQUEE */
   .marquee-strip{background:var(--gold);padding:.8rem 0;overflow:hidden;}
   .marquee-track{display:flex;gap:4rem;animation:marquee 20s linear infinite;width:max-content;}
   .marquee-track span{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--soil);font-weight:500;white-space:nowrap;}
   .marquee-sep{color:var(--bark);opacity:.4;}
   @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
- 
+
   /* SECTIONS */
   section{padding:8rem 4rem;}
   .section-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;margin-bottom:4rem;}
   .section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold);opacity:.4;}
- 
+
   /* ABOUT */
   .about{background:var(--bark);position:relative;overflow:hidden;}
   .about::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,82,64,.15) 0%,transparent 70%);}
@@ -125,7 +133,7 @@
   .value-item{padding:1.5rem 0;border-bottom:1px solid rgba(200,169,110,.1);display:flex;gap:1.5rem;align-items:flex-start;}
   .value-num{font-family:'Cormorant Garamond',serif;font-size:.75rem;color:var(--gold);opacity:.6;margin-top:.2rem;min-width:1.5rem;}
   .value-text{font-size:.85rem;line-height:1.7;color:var(--stone);}
- 
+
   /* SERVICES */
   .services{background:var(--soil);}
   .services-intro{margin-bottom:4rem;}
@@ -142,7 +150,7 @@
   .service-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--cream);margin-bottom:1rem;line-height:1.2;}
   .service-desc{font-size:.82rem;line-height:1.8;color:var(--stone);margin-bottom:2rem;}
   .service-fee{font-size:.7rem;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;}
- 
+
   /* PROJECTS */
   .projects{background:var(--bark);}
   .projects-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end;}
@@ -161,7 +169,7 @@
   .pv-2{background:linear-gradient(135deg,#12191a,#1f2e2e,#141e1e);}
   .pv-3{background:linear-gradient(135deg,#1a1612,#2e2820,#1a1510);}
   .pv-organic{position:absolute;inset:0;opacity:.4;background-image:radial-gradient(ellipse 70% 70% at 30% 40%,rgba(74,82,64,.6) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 70% 70%,rgba(200,169,110,.2) 0%,transparent 50%);}
- 
+
   /* CAUDALES */
   .caudales{background:linear-gradient(170deg,#0D1209,#111A0E,#0A0F08);position:relative;overflow:hidden;}
   .caudales::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
@@ -182,7 +190,7 @@
   .caudales-float{position:absolute;bottom:-2rem;left:-3rem;width:180px;background:var(--gold);padding:1.5rem;}
   .caudales-float p{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--soil);line-height:1;}
   .caudales-float span{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bark);display:block;margin-top:.3rem;}
- 
+
   /* TEAM */
   .team{background:var(--soil);}
   .team h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:300;color:var(--cream);margin-bottom:5rem;max-width:500px;line-height:1.1;}
@@ -201,7 +209,7 @@
   .team-creds{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(200,169,110,.1);display:flex;flex-direction:column;gap:.3rem;}
   .cred{font-size:.7rem;color:var(--lichen);display:flex;align-items:center;gap:.5rem;}
   .cred::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.6;flex-shrink:0;}
- 
+
   /* CONTACT */
   .contact{background:var(--bark);position:relative;overflow:hidden;}
   .contact::after{content:'ESTROMAS';position:absolute;bottom:-2rem;right:-2rem;font-family:'Cormorant Garamond',serif;font-size:12rem;font-weight:300;color:rgba(200,169,110,.03);letter-spacing:-.02em;user-select:none;white-space:nowrap;}
@@ -222,7 +230,7 @@
   .form-group select option{background:var(--bark);}
   .btn-submit{background:var(--gold);border:none;padding:1rem 2.5rem;color:var(--soil);font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;align-self:flex-start;transition:all .3s;}
   .btn-submit:hover{background:var(--gold-light);}
- 
+
   /* FOOTER */
   footer{background:var(--soil);padding:3rem 4rem;border-top:1px solid rgba(200,169,110,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
   .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:.3em;text-transform:uppercase;color:var(--stone);}
@@ -231,7 +239,7 @@
   .footer-social{display:flex;gap:2rem;}
   .footer-social a{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color .3s;}
   .footer-social a:hover{color:var(--gold);}
- 
+
   /* WHATSAPP FLOAT */
   .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;align-items:center;overflow:hidden;background:#25D366;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.3);text-decoration:none;color:#fff;transition:all .4s;max-width:52px;}
   .wa-float:hover{max-width:280px;}
@@ -239,14 +247,14 @@
   .wa-icon svg{width:26px;height:26px;}
   .wa-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding-right:1.2rem;font-weight:500;opacity:0;transition:opacity .3s .1s;}
   .wa-float:hover .wa-label{opacity:1;}
- 
+
   /* REVEAL */
   .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s;}
   .reveal.visible{opacity:1;transform:translateY(0);}
   .reveal-delay-1{transition-delay:.1s;}
   .reveal-delay-2{transition-delay:.2s;}
   .reveal-delay-3{transition-delay:.3s;}
- 
+
   /* LANGUAGE */
   body.lang-en [data-es]{display:none;}
   body.lang-en [data-en]{display:block;}
@@ -256,7 +264,7 @@
   body.lang-en span[data-en]{display:inline;}
   body.lang-es span[data-en]{display:none;}
   body.lang-es span[data-es]{display:inline;}
- 
+
   /* ══ MOBILE ══ */
   @media(max-width:768px){
     :root{--announce-h:36px;--nav-h:64px;}
@@ -306,7 +314,7 @@
     .wa-float:hover{max-width:52px;}
     .wa-label{display:none;}
   }
- 
+
   /* ══ TABLET ══ */
   @media(min-width:769px) and (max-width:1024px){
     nav{padding:0 2.5rem;}
@@ -327,10 +335,10 @@
 </style>
 </head>
 <body class="lang-es">
- 
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
- 
+
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce" id="announce">
   <div class="announce-dot"></div>
@@ -338,10 +346,10 @@
   <p data-en>🌿 Caudales — Residences now in pre-sale · Cuenca &nbsp;·&nbsp; <a href="#caudales">View project →</a></p>
   <button class="announce-close" onclick="closeAnnounce()">✕</button>
 </div>
- 
+
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">ESTRO<span>MAS</span></a>
+  <a href="#" class="nav-logo"><span class="l">E</span><span class="l">S</span><span class="l">T</span><span class="l">R</span><span class="l">O</span><span class="l">M</span><span class="l">A</span><span class="l">S</span></a>
   <div class="nav-links">
     <a href="#nosotros" data-es>Estudio</a><a href="#nosotros" data-en>Studio</a>
     <a href="#servicios" data-es>Servicios</a><a href="#servicios" data-en>Services</a>
@@ -361,7 +369,7 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
- 
+
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#nosotros" onclick="closeMenu()" data-es>Estudio</a><a href="#nosotros" onclick="closeMenu()" data-en>Studio</a>
@@ -375,19 +383,19 @@
     <button onclick="setLang('en');closeMenu()">EN — English</button>
   </div>
 </div>
- 
+
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-bg"></div>
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-lines"><span></span><span></span><span></span></div>
- 
+
   <a href="#caudales" class="hero-caudales-badge">
     <span data-es>Caudales — Preventa activa · Cuenca</span>
     <span data-en>Caudales — Pre-sale now open · Cuenca</span>
   </a>
- 
+
   <p class="hero-eyebrow">
     <span data-es>Cuenca, Ecuador — Arquitectura Eco-Céntrica</span>
     <span data-en>Cuenca, Ecuador — Eco-Centric Architecture</span>
@@ -408,14 +416,14 @@
     </div>
   </div>
 </section>
- 
+
 <!-- MARQUEE -->
 <div class="marquee-strip">
   <div class="marquee-track">
     <span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Cuenca · Ecuador</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span><span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Cuenca · Ecuador</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span>
   </div>
 </div>
- 
+
 <!-- ABOUT -->
 <section class="about" id="nosotros">
   <p class="section-label reveal"><span data-es>◆ El Estudio</span><span data-en>◆ The Studio</span></p>
@@ -439,7 +447,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- SERVICES -->
 <section class="services" id="servicios">
   <p class="section-label reveal"><span data-es>◆ Servicios</span><span data-en>◆ Services</span></p>
@@ -476,7 +484,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- PROJECTS -->
 <section class="projects" id="proyectos">
   <div class="projects-intro">
@@ -502,7 +510,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- CAUDALES -->
 <section class="caudales" id="caudales">
   <div class="caudales-inner">
@@ -550,7 +558,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- TEAM -->
 <section class="team" id="equipo">
   <p class="section-label reveal"><span data-es>◆ El Equipo</span><span data-en>◆ The Team</span></p>
@@ -583,7 +591,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- CONTACT -->
 <section class="contact" id="contacto">
   <div class="contact-inner">
@@ -636,7 +644,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <p class="footer-logo">ESTRO<span>MAS</span></p>
@@ -647,7 +655,7 @@
     <a href="https://estromas.com/">estromas.com</a>
   </div>
 </footer>
- 
+
 <!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://wa.me/593998351024" target="_blank" rel="noopener" aria-label="WhatsApp Estromas">
   <div class="wa-icon">
@@ -656,7 +664,7 @@
   <span class="wa-label" data-es>Consultar sobre Caudales</span>
   <span class="wa-label" data-en>Ask about Caudales</span>
 </a>
- 
+
 <script>
   // CURSOR
   if(window.matchMedia('(pointer:fine)').matches){
@@ -670,16 +678,16 @@
       el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(200,169,110,.4)';});
     });
   }
- 
+
   // NAV SCROLL
   window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',scrollY>60);});
- 
+
   // ANNOUNCE CLOSE
   function closeAnnounce(){
     document.getElementById('announce').style.display='none';
     document.documentElement.style.setProperty('--announce-h','0px');
   }
- 
+
   // HAMBURGER
   function toggleMenu(){
     const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');
@@ -692,7 +700,7 @@
     document.getElementById('hamburger').classList.remove('open');
     document.body.style.overflow='';
   }
- 
+
   // LANGUAGE
   function setLang(lang){
     document.body.className='lang-'+lang;
@@ -700,11 +708,11 @@
     document.querySelectorAll('.mobile-lang button').forEach((b,i)=>b.classList.toggle('active',(lang==='es'&&i===0)||(lang==='en'&&i===1)));
     document.querySelectorAll('textarea').forEach(ta=>{ta.placeholder=ta.getAttribute('data-'+lang+'-placeholder')||'';});
   }
- 
+
   // REVEAL
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
- 
+
   setLang('es');
 </script>
 </body>
