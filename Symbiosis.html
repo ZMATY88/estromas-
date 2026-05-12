@@ -48,9 +48,9 @@
   .proj-desc-inner{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;}
   .proj-desc p{font-size:.95rem;line-height:1.9;color:var(--stone);margin-bottom:1.5rem;}
   .proj-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-  .spec{padding:1.2rem;border:1px solid rgba(200,169,110,0.12);background:rgba(200,169,110,0.03);}
-  .spec-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:.3rem;}
-  .spec-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);}
+  .spec{padding: 2rem 1.5rem;border:1px solid rgba(200,169,110,0.12);background:rgba(200,169,110,0.03);display:flex;flex-direction:column;justify-content:space-between;}
+  .spec-num{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,8vw,7rem);font-weight:300;color:var(--gold);line-height:1;margin-bottom:1rem;display:block;}
+  .spec-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);line-height:1.5;}
   .proj-gallery{background:var(--soil);}
   .gallery-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
   .gp-1{background:linear-gradient(135deg,#1a2012,#2d3a20);}
@@ -137,10 +137,10 @@
     <div class="reveal reveal-delay-1">
       <p class="section-label"><span data-es>◆ Ficha Técnica</span><span data-en>◆ Technical Sheet</span></p>
       <div class="proj-specs-grid">
-        <div class="spec"><p class="spec-num">53</p><p class="spec-label">m²</p></div>
-        <div class="spec"><p class="spec-num">45%</p><p class="spec-label" data-es>Materiales locales</p><p class="spec-label" data-en>Local materials</p></div>
-        <div class="spec"><p class="spec-num">8+</p><p class="spec-label" data-es>Especies integradas</p><p class="spec-label" data-en>Integrated species</p></div>
-        <div class="spec"><p class="spec-num">35%</p><p class="spec-label" data-es>Materiales reciclados</p><p class="spec-label" data-en>Recycled materials</p></div>
+        <div class="spec"><p class="spec-num" style="font-size:clamp(4rem,8vw,7rem);font-family:'Cormorant Garamond',serif;font-weight:300;color:#C8A96E;line-height:1;margin-bottom:1rem;display:block;">53</p><p class="spec-label">m²</p></div>
+        <div class="spec"><p class="spec-num" style="font-size:clamp(4rem,8vw,7rem);font-family:'Cormorant Garamond',serif;font-weight:300;color:#C8A96E;line-height:1;margin-bottom:1rem;display:block;">45%</p><p class="spec-label" data-es>Materiales locales</p><p class="spec-label" data-en>Local materials</p></div>
+        <div class="spec"><p class="spec-num" style="font-size:clamp(4rem,8vw,7rem);font-family:'Cormorant Garamond',serif;font-weight:300;color:#C8A96E;line-height:1;margin-bottom:1rem;display:block;">8+</p><p class="spec-label" data-es>Especies integradas</p><p class="spec-label" data-en>Integrated species</p></div>
+        <div class="spec"><p class="spec-num" style="font-size:clamp(4rem,8vw,7rem);font-family:'Cormorant Garamond',serif;font-weight:300;color:#C8A96E;line-height:1;margin-bottom:1rem;display:block;">35%</p><p class="spec-label" data-es>Materiales reciclados</p><p class="spec-label" data-en>Recycled materials</p></div>
       </div>
     </div>
   </div>
@@ -358,9 +358,9 @@
   <p class="section-label reveal"><span data-es>◆ Materiales</span><span data-en>◆ Materials</span></p>
   <div class="tech-grid reveal">
     <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Tierra compactada</p><p class="tech-name" data-en>Compacted earth</p><p class="tech-detail" data-es>Extraída del sitio de construcción</p><p class="tech-detail" data-en>Extracted from the construction site</p></div>
-    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Madera local</p><p class="tech-name" data-en>Local timber</p><p class="tech-detail" data-es>Eucalipto rollizo de la región andina</p><p class="tech-detail" data-en>Round eucalyptus from the Andean region</p></div>
+    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Madera local</p><p class="tech-name" data-en>Local timber</p><p class="tech-detail" data-es>Eucalipto cultivado en el sitio utilizado para la construcción de la estructura</p><p class="tech-detail" data-en>Eucalyptus grown on site used for the structural construction</p></div>
     <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Botellas recicladas</p><p class="tech-name" data-en>Recycled bottles</p><p class="tech-detail" data-es>Integradas como módulos constructivos en muros y cubierta</p><p class="tech-detail" data-en>Integrated as construction modules in walls and roof</p></div>
-    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Plantas nativas</p><p class="tech-name" data-en>Native plants</p><p class="tech-detail" data-es>8 especies nativas integradas al diseño</p><p class="tech-detail" data-en>8 native species integrated into the design</p></div>
+    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Plantas nativas</p><p class="tech-name" data-en>Native plants</p><p class="tech-detail" data-es>Pared de bromelias y cascada construida con llantas naturales</p><p class="tech-detail" data-en>Bromeliad wall and waterfall built with natural tires</p></div>
   </div>
 </section>
 
