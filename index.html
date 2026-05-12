@@ -11,7 +11,7 @@
     --soil: #1C1A15; --bark: #2E2B22; --moss: #4A5240;
     --lichen: #7A8C6E; --stone: #B8B0A0; --cream: #F4F0E8;
     --gold: #C8A96E; --gold-light: #E8C98E;
-    --announce-h: 40px; --nav-h: 80px;
+    --announce-h: 0px; --nav-h: 80px;
   }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; font-size:16px; }
@@ -24,7 +24,7 @@
     body{cursor:none;}
   }
 
-  .announce{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--announce-h);background:var(--gold);display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 3rem;}
+  .announce{display:none !important;}
   .announce-dot{width:6px;height:6px;border-radius:50%;background:var(--soil);opacity:.5;animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
   .announce p{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--soil);text-align:center;}
   .announce a{color:var(--soil);font-weight:500;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
@@ -164,7 +164,7 @@
   .caudales{background:linear-gradient(170deg,#0D1209,#111A0E,#0A0F08);position:relative;overflow:hidden;}
   .caudales::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
   .caudales-inner{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;}
-  .caudales-badge{display:inline-flex;align-items:center;gap:.8rem;padding:.5rem 1.2rem;border:1px solid rgba(200,169,110,.4);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;}
+  .caudales-badge{display:inline-flex;align-items:center;gap:.8rem;padding:.5rem 1.2rem;border:1px solid rgba(200,169,110,.4);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;flex-wrap:nowrap;}
   .caudales-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
   .caudales h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5rem);font-weight:300;line-height:1.3;color:var(--cream);margin-bottom:1.5rem;}
   .caudales h2 em{color:var(--gold);font-style:italic;}
@@ -174,10 +174,10 @@
   .spec-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:.3rem;}
   .spec-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);}
   .caudales-visual{position:relative;}
-  .caudales-img-main{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,#0f1f0c,#162810,#0c1a09);position:relative;overflow:hidden;}
-  .caudales-gyroid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .caudales-img-main{width:100%;aspect-ratio:3/4;background:transparent;position:relative;overflow:hidden;}
+  .caudales-gyroid{display:none;}
   .gyroid-svg{width:80%;height:80%;opacity:.3;}
-  .caudales-float{position:absolute;bottom:-2rem;left:-3rem;width:180px;background:var(--gold);padding:1.5rem;}
+  .caudales-float{display:none;}
   .caudales-float p{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--soil);line-height:1;}
   .caudales-float span{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bark);display:block;margin-top:.3rem;}
 
@@ -251,7 +251,7 @@
   body.lang-es span[data-es]{display:inline;}
 
   @media(max-width:768px){
-    :root{--announce-h:36px;--nav-h:64px;}
+    :root{--announce-h:0px;--nav-h:64px;}
     body{cursor:auto;}
     .announce p{font-size:.58rem;letter-spacing:.06em;}
     .announce a{display:none;}
@@ -266,7 +266,7 @@
     .hero-eyebrow{font-size:.56rem;letter-spacing:.15em;}
     .hero-eyebrow::before{width:20px;}
     .hero-title{margin-bottom:1.8rem;}
-    .hero-title .line-1{font-size:clamp(1.1rem,4.2vw,1.6rem) !important;line-height:1.35 !important;}
+    .hero-title .line-1{font-size:clamp(2rem,6vw,2.8rem) !important;line-height:1.2 !important;}
     .hero-gold{font-size:inherit !important;}
     .hero-bottom{flex-direction:column;align-items:flex-start;gap:1.5rem;}
     .hero-desc{max-width:100%;font-size:.85rem;}
@@ -313,7 +313,7 @@
   }
   @media(max-width:480px){
     section{padding:3rem 1.2rem;}
-    .hero-title .line-1{font-size:clamp(1rem,3.8vw,1.4rem) !important;line-height:1.3 !important;}
+    .hero-title .line-1{font-size:clamp(1.8rem,5.5vw,2.4rem) !important;line-height:1.2 !important;}
     .about-left h2{font-size:clamp(1.5rem,5.5vw,2.2rem);}
     .proj-card{aspect-ratio:16/9 !important;}
     .service-title{font-size:1.3rem;}
@@ -416,7 +416,7 @@
 
 <div class="marquee-strip">
   <div class="marquee-track">
-    <span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Cuenca · Ecuador</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span><span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Cuenca · Ecuador</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span>
+    <span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span><span>Bioconstrucción</span><span class="marquee-sep">✦</span><span>Eco-Centric Design</span><span class="marquee-sep">✦</span><span>Arquitectura Regenerativa</span><span class="marquee-sep">✦</span><span>Biodesign</span><span class="marquee-sep">✦</span><span>Multispecies Architecture</span><span class="marquee-sep">✦</span><span>Diseño Paramétrico</span><span class="marquee-sep">✦</span>
   </div>
 </div>
 
@@ -426,12 +426,24 @@
     <div class="about-left reveal">
       <h2 data-es>Estromas: los tejidos invisibles de la arquitectura que <em>sostienen la vida.</em></h2>
       <h2 data-en>Estromas: the invisible tissues of architecture that <em>sustain life.</em></h2>
-      <p data-es>Estromas es un estudio de diseño arquitectónico que crea espacios que abrazan las oportunidades de la naturaleza y el territorio, generando impacto ambiental y social positivo.</p>
-      <p data-en>Estromas is an architectural design studio that creates spaces embracing the opportunities of nature and territory, generating positive environmental and social impact.</p>
-      <p data-es>Trabajamos con materiales locales, sistemas vivos y tecnologías emergentes para diseñar espacios que no solo minimizan el daño, sino que activamente regeneran los ecosistemas que habitan.</p>
-      <p data-en>We work with local materials, living systems, and emerging technologies to design spaces that don't just minimize harm — but actively regenerate the ecosystems they inhabit.</p>
+      <p data-es>Nuestro nombre viene de los estromas — las estructuras de soporte en plantas y células, los tejidos que sostienen vida sin ser visibles. Así entendemos la arquitectura: no como protagonista del paisaje, sino como soporte inteligente de los sistemas vivos que lo habitan.</p>
+      <p data-en>Our name comes from stroma — the support structures in plants and cells, the tissues that sustain life without being visible. This is how we understand architecture: not as the protagonist of the landscape, but as an intelligent support for the living systems that inhabit it.</p>
+      <p data-es>Trabajamos con materiales locales, sistemas vivos y tecnologías emergentes para diseñar espacios que no solo minimizan el daño, sino que activamente regeneran los ecosistemas que habitan. Trabajamos en bioparques, destinos de turismo regenerativo, infraestructura pública y vivienda.</p>
+      <p data-en>We work with local materials, living systems, and emerging technologies to design spaces that don't just minimize harm — but actively regenerate the ecosystems they inhabit. We work on bioparks, regenerative tourism destinations, public infrastructure, and housing.</p>
     </div>
     <div class="about-right reveal reveal-delay-2">
+      <div style="margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(200,169,110,.1);">
+        <p style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:.8rem;" data-es>Nuestra Misión</p>
+        <p style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:.8rem;" data-en>Our Mission</p>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--stone);" data-es>Diseñar para la regeneración y hacer todo lo posible por liberar el potencial de los sistemas vivos, creando espacios donde la naturaleza y la humanidad prosperen como una sola.</p>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--stone);" data-en>Design for regeneration and do everything possible to unlock the potential of living systems, creating spaces where nature and humanity thrive as one.</p>
+      </div>
+      <div style="margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(200,169,110,.1);">
+        <p style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:.8rem;" data-es>Nuestra Visión</p>
+        <p style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:.8rem;" data-en>Our Vision</p>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--stone);" data-es>Ser un referente global en arquitectura regenerativa y biodiseño, redefiniendo la manera en que la humanidad y el mundo natural se interrelacionan.</p>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--stone);" data-en>To be a global reference in regenerative architecture and biodesign, redefining the way humanity and the natural world interrelate.</p>
+      </div>
       <p class="values-title" data-es>Los valores que guían nuestro proceso</p>
       <p class="values-title" data-en>The values that guide our process</p>
       <div class="value-item"><span class="value-num">◆</span><p class="value-text" data-es>Concebimos naturaleza y humanidad como una sola unidad viva.</p><p class="value-text" data-en>We conceive nature and humanity as a single living unity.</p></div>
@@ -446,35 +458,35 @@
 <section class="services" id="servicios">
   <p class="section-label reveal"><span data-es>◆ Servicios</span><span data-en>◆ Services</span></p>
   <div class="services-intro reveal">
-    <h2 class="services-heading" data-es>Crea con <em>nosotros</em></h2>
-    <h2 class="services-heading" data-en>Create <em>with us</em></h2>
-    <p class="services-sub" data-es>Trabajamos con propietarios privados, instituciones, desarrolladores y organizaciones ambientales en tres líneas principales.</p>
-    <p class="services-sub" data-en>We work with private owners, institutions, developers, and environmental organizations across three main lines.</p>
+    <h2 class="services-heading" data-es>¿Qué podemos hacer <em>juntos?</em></h2>
+    <h2 class="services-heading" data-en>What can we do <em>together?</em></h2>
+    <p class="services-sub" data-es>Trabajamos con propietarios, instituciones y desarrolladores que entienden que el entorno natural es el mayor activo de cualquier proyecto.</p>
+    <p class="services-sub" data-en>We work with owners, institutions, and developers who understand that the natural environment is any project's greatest asset.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
       <span class="service-num">◆</span>
       <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M8 40 L24 8 L40 40" stroke="#C8A96E" stroke-width="1" fill="none"/><path d="M14 28 L34 28" stroke="#C8A96E" stroke-width="0.8"/><circle cx="24" cy="8" r="2" fill="#C8A96E" opacity="0.5"/></svg>
-      <h3 class="service-title" data-es>Arquitectura &amp; Diseño Eco-Céntrico</h3><h3 class="service-title" data-en>Architecture &amp; Eco-Centric Design</h3>
-      <p class="service-desc" data-es>Trabajamos en vivienda, edificios culturales, intervenciones en espacios naturales y proyectos de uso mixto. Cada proyecto parte de un análisis riguroso del sitio — clima, topografía, materiales disponibles, biodiversidad local — y se desarrolla con diseño paramétrico y técnicas de bioconstrucción.</p>
-      <p class="service-desc" data-en>We work on housing, cultural buildings, interventions in natural spaces, and mixed-use projects. Each project begins with a rigorous site analysis — climate, topography, available materials, local biodiversity — and is developed with parametric design and bioconstruction techniques.</p>
-      <p class="service-fee" data-es>Honorarios desde 8% del presupuesto de obra</p><p class="service-fee" data-en>Fees from 8% of construction budget</p>
+      <h3 class="service-title" data-es>Arquitectura y Diseño</h3><h3 class="service-title" data-en>Architecture &amp; Design</h3>
+      <p class="service-desc" data-es>Diseñamos viviendas, espacios culturales e intervenciones en entornos naturales. Cada proyecto parte del sitio — su clima, topografía, biodiversidad y materiales locales — y se desarrolla con bioconstrucción y diseño paramétrico.</p>
+      <p class="service-desc" data-en>We design homes, cultural spaces, and interventions in natural environments. Each project starts from the site — its climate, topography, biodiversity, and local materials — and is developed with bioconstruction and parametric design.</p>
+      <a href="#contacto" onclick="preselect('Arquitectura y Diseño')" class="service-fee" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;transition:opacity .3s;"><span data-es>Cuéntanos tu proyecto →</span><span data-en>Tell us about your project →</span></a>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <span class="service-num">◆</span>
       <svg class="service-icon" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" stroke="#C8A96E" stroke-width="0.8" fill="none"/><path d="M6 20 L42 20 M6 32 L42 32 M18 6 L18 42 M30 6 L30 42" stroke="#C8A96E" stroke-width="0.5" opacity="0.4"/><circle cx="24" cy="26" r="6" stroke="#C8A96E" stroke-width="0.8" fill="none"/></svg>
       <h3 class="service-title" data-es>Urbanismo &amp; Desarrollo Sostenible</h3><h3 class="service-title" data-en>Urban Planning &amp; Sustainable Development</h3>
-      <p class="service-desc" data-es>Diseñamos planes urbanos, corredores ecológicos y estrategias de desarrollo que integran biodiversidad, gestión del agua y movilidad. Trabajamos con municipios, desarrolladores y comunidades para crear territorios que crecen sin destruir lo que los hace valiosos.</p>
-      <p class="service-desc" data-en>We design urban plans, ecological corridors, and development strategies that integrate biodiversity, water management, and mobility. We work with municipalities, developers, and communities to create territories that grow without destroying what makes them valuable.</p>
-      <p class="service-fee" data-es>Consultoría desde $3,500 USD</p><p class="service-fee" data-en>Consulting from $3,500 USD</p>
+      <p class="service-desc" data-es>Desarrollamos planes maestros, corredores ecológicos, estrategias territoriales y modelos de crecimiento urbano que integran biodiversidad, agua, movilidad, paisaje e infraestructura. Acompañamos a municipios, comunidades, desarrolladores e instituciones en la toma de decisiones para crear territorios más resilientes, productivos y ambientalmente responsables.</p>
+      <p class="service-desc" data-en>We develop master plans, ecological corridors, territorial strategies, and urban growth models that integrate biodiversity, water, mobility, landscape, and infrastructure. We support municipalities, communities, developers, and institutions in decision-making to create more resilient, productive, and environmentally responsible territories.</p>
+      <a href="#contacto" onclick="preselect('Urbanismo y Desarrollo Sostenible')" class="service-fee" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;transition:opacity .3s;"><span data-es>Solicitar consultoría →</span><span data-en>Request a consultation →</span></a>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <span class="service-num">◆</span>
       <svg class="service-icon" viewBox="0 0 48 48" fill="none"><path d="M24 4 C24 4 8 16 8 28 C8 36.8 15.2 44 24 44 C32.8 44 40 36.8 40 28 C40 16 24 4 24 4Z" stroke="#C8A96E" stroke-width="0.8" fill="none"/><path d="M16 30 C18 24 22 20 24 18 C26 20 30 24 32 30" stroke="#C8A96E" stroke-width="0.6" fill="none" opacity="0.5"/></svg>
-      <h3 class="service-title" data-es>Diseño Eco-Turístico</h3><h3 class="service-title" data-en>Eco-Tourism Design</h3>
-      <p class="service-desc" data-es>Diseñamos experiencias turísticas — glamping, senderos interpretativos, centros de visitantes, santuarios de fauna — donde la arquitectura amplifica el valor del entorno natural en lugar de competir con él. Cada proyecto incluye un estudio de impacto ambiental y estrategias de mínima huella.</p>
-      <p class="service-desc" data-en>We design tourism experiences — glamping, interpretive trails, visitor centers, wildlife sanctuaries — where architecture amplifies the value of the natural environment rather than competing with it. Each project includes an environmental impact study and minimal footprint strategies.</p>
-      <p class="service-fee" data-es>Proyectos desde $20,000 USD</p><p class="service-fee" data-en>Projects from $20,000 USD</p>
+      <h3 class="service-title" data-es>Diseño Eco-Turístico &amp; Ambiental</h3><h3 class="service-title" data-en>Eco-Tourism &amp; Environmental Design</h3>
+      <p class="service-desc" data-es>Diseñamos experiencias de turismo de naturaleza — glamping, lodges, senderos interpretativos, centros de visitantes y santuarios de fauna — donde la arquitectura aumenta el valor del paisaje sin competir con él. Cada proyecto integra criterios de mínima huella, operación eficiente, narrativa ambiental y experiencia memorable para el visitante.</p>
+      <p class="service-desc" data-en>We design nature tourism experiences — glamping, lodges, interpretive trails, visitor centers, and wildlife sanctuaries — where architecture enhances the value of the landscape without competing with it. Each project integrates minimal footprint criteria, efficient operation, environmental narrative, and memorable visitor experience.</p>
+      <a href="#contacto" onclick="preselect('Diseño Eco-Turístico y Ambiental')" class="service-fee" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;transition:opacity .3s;"><span data-es>Hablemos de tu destino →</span><span data-en>Let's talk about your destination →</span></a>
     </div>
   </div>
 </section>
@@ -503,7 +515,7 @@
     </a>
     <a href="wings-roots.html" class="proj-card">
       <!-- 📷 WINGS & ROOTS — cambia el src por tu foto de portada -->
-      <img src="proyectos/WINGS-ROOTS/portada.jpg" class="proj-card-img" onerror="this.style.display='none'">
+      <img src="proyectos/rooftop/09_render_final_2_monigote_flores.webp" class="proj-card-img" onerror="this.style.display='none'">
       <div class="proj-visual pv-3"><div class="pv-organic"></div><svg viewBox="0 0 200 200" width="55%" opacity="0.2"><rect x="30" y="60" width="140" height="100" stroke="#C8A96E" stroke-width="0.5" fill="none"/><path d="M30 60 Q100 20 170 60" stroke="#C8A96E" stroke-width="0.5" fill="none"/></svg></div>
       <div class="proj-card-overlay"><p class="proj-tag" data-es>Rooftop · Centro Histórico</p><p class="proj-tag" data-en>Rooftop · Historic Center</p><h3 class="proj-title">Wings &amp; Roots<br><em>páramo rooftop</em></h3><p class="proj-meta" data-es>Cuenca · 250 m² · En desarrollo</p><p class="proj-meta" data-en>Cuenca · 250 m² · In development</p></div>
     </a>
@@ -514,21 +526,29 @@
   <div class="caudales-inner">
     <div class="reveal">
       <p class="section-label" style="margin-bottom:1.5rem"><span data-es>◆ Proyecto en Preventa</span><span data-en>◆ Pre-Sale Project</span></p>
-      <span class="caudales-badge" data-es>Preventa activa · Cuenca, Ecuador</span>
-      <span class="caudales-badge" data-en>Active pre-sale · Cuenca, Ecuador</span>
+      <span class="caudales-badge" data-es>Preventa activa · Puertas del Sol / San Joaquín · Cuenca</span>
+      <span class="caudales-badge" data-en>Active pre-sale · Puertas del Sol / San Joaquín · Cuenca</span>
       <h2 data-es><em>Caudales</em><br>Departamentos</h2><h2 data-en><em>Caudales</em><br>Residences</h2>
-      <p class="caudales-sub" data-es>Un edificio concebido como ecosistema vivo en San Joaquín, Cuenca. Jardines de agua contemplativos, geometría gyroid en cerámica que crea hábitats para la biodiversidad, y terrazas agrícolas que recuperan la memoria productiva del lugar.</p>
-      <p class="caudales-sub" data-en>A building conceived as a living ecosystem in San Joaquín, Cuenca. Contemplative water gardens, gyroid ceramic geometry creating biodiversity habitats, and agricultural terraces recovering the site's productive memory.</p>
-      <div class="caudales-specs">
-        <div class="spec"><p class="spec-num">18</p><p class="spec-label" data-es>Unidades</p><p class="spec-label" data-en>Units</p></div>
-        <div class="spec"><p class="spec-num">2.000</p><p class="spec-label">m² <span data-es>construidos</span><span data-en>built</span></p></div>
-        <div class="spec"><p class="spec-num">6</p><p class="spec-label" data-es>Tipologías</p><p class="spec-label" data-en>Unit Types</p></div>
-        <div class="spec"><p class="spec-num">12</p><p class="spec-label" data-es>Parqueaderos</p><p class="spec-label" data-en>Parking</p></div>
-      </div>
-      <a href="#contacto" class="btn-primary"><span data-es>Solicitar Información</span><span data-en>Request Information</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2"/></svg></a>
+      <p style="font-size:1rem;font-weight:500;color:var(--cream);margin-bottom:1rem;" data-es>Vive entre la ciudad y el paisaje.</p>
+      <p style="font-size:1rem;font-weight:500;color:var(--cream);margin-bottom:1rem;" data-en>Live between the city and the landscape.</p>
+      <p class="caudales-sub" data-es>Caudales es un proyecto residencial en preventa ubicado en San Joaquín, junto a Puertas del Sol, una de las zonas de mayor proyección y calidad de vida de Cuenca. Su diseño integra jardines de agua contemplativos, terrazas productivas y muros de cerámica artesanal con patrones que crean privacidad sin cerrar el paisaje — una arquitectura que dialoga con el entorno natural y transforma la experiencia de habitar en la ciudad.</p>
+      <p class="caudales-sub" data-en>Caudales is a residential project in pre-sale located in San Joaquín, next to Puertas del Sol, one of Cuenca's most promising neighborhoods. Its design integrates contemplative water gardens, productive terraces, and handcrafted ceramic walls with patterns that create privacy without closing off the landscape — an architecture that engages with the natural environment and transforms the experience of living in the city.</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem;">
+        <li style="font-size:.85rem;color:var(--stone);display:flex;align-items:center;gap:.8rem;"><span style="color:var(--gold);font-size:.6rem;">◆</span><span data-es>12 unidades con parqueadero</span><span data-en>12 units with parking</span></li>
+        <li style="font-size:.85rem;color:var(--stone);display:flex;align-items:center;gap:.8rem;"><span style="color:var(--gold);font-size:.6rem;">◆</span><span data-es>Departamentos desde 58 m²</span><span data-en>Apartments from 58 m²</span></li>
+        <li style="font-size:.85rem;color:var(--stone);display:flex;align-items:center;gap:.8rem;"><span style="color:var(--gold);font-size:.6rem;">◆</span><span data-es>Opciones de 1 a 4 dormitorios</span><span data-en>Options from 1 to 4 bedrooms</span></li>
+        <li style="font-size:.85rem;color:var(--stone);display:flex;align-items:center;gap:.8rem;"><span style="color:var(--gold);font-size:.6rem;">◆</span><span data-es>Distribuciones flexibles para distintas formas de habitar</span><span data-en>Flexible layouts for different ways of living</span></li>
+        <li style="font-size:.85rem;color:var(--stone);display:flex;align-items:center;gap:.8rem;"><span style="color:var(--gold);font-size:.6rem;">◆</span><span data-es>Financiamiento disponible con crédito CREDICASA desde 2.99%</span><span data-en>Financing available with CREDICASA from 2.99%</span></li>
+      </ul>
+      <a href="#contacto" onclick="preselect('Caudales')" class="btn-primary"><span data-es>Conocer disponibilidad</span><span data-en>Check availability</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2"/></svg></a>
     </div>
     <div class="caudales-visual reveal reveal-delay-2">
       <div class="caudales-img-main">
+        <!-- ============================================
+        📷 CAUDALES — imagen del proyecto
+        Cambia el src por tu imagen:
+        ============================================ -->
+        <img src="proyectos/CAUDALES/VERTICAL.png" style="width:100%;height:100%;object-fit:contain;position:absolute;inset:0;padding:1rem;box-sizing:border-box;" onerror="this.style.display='none'">
         <div class="caudales-gyroid">
           <svg class="gyroid-svg" viewBox="0 0 400 500" fill="none">
             <rect x="60" y="80" width="280" height="380" stroke="#C8A96E" stroke-width="0.5" fill="none"/>
@@ -565,25 +585,25 @@
     <div class="team-card reveal">
       <div class="team-photo"><div class="team-photo-inner tp-1"><img src="equipo/NATI.jpg" alt="Natalia Juca Freire" class="team-img team-img-nati"></div><div class="team-line"></div></div>
       <p class="team-name">Natalia Juca Freire</p>
-      <p class="team-role" data-es>Co-Fundadora · Directora Creativa y de Investigación</p><p class="team-role" data-en>Co-Founder · Creative & Research Director</p>
-      <p class="team-bio" data-es>Especialista en tecnologías emergentes y pensamiento multiespecie. Combina investigación arquitectónica con estrategia de negocio para crear proyectos de impacto real.</p>
-      <p class="team-bio" data-en>Specialist in emerging technologies and multispecies thinking. Combines architectural research with business strategy to create real-impact projects.</p>
-      <div class="team-creds"><p class="cred">MSc. Emergent Technologies — Architectural Association, London</p><p class="cred">Chevening Award — UK Government</p><p class="cred">MBA — USFQ Quito</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
+      <p class="team-role" data-es>MSc. MDI Arch. · Directora Creativa y de Investigación</p><p class="team-role" data-en>MSc. MDI Arch. · Creative & Research Director</p>
+      <p class="team-bio" data-es>Máster en la intersección del diseño arquitectónico y la ecología. Aplica tecnologías emergentes con enfoque multiespecie para concebir proyectos donde los entornos construidos coexisten con los sistemas vivos.</p>
+      <p class="team-bio" data-en>Master's at the intersection of architectural design and ecology. Applies emerging technologies with a multispecies approach to conceive projects where built environments coexist with living systems.</p>
+      <div class="team-creds"><p class="cred">MSc. Emergent Technologies — Architectural Association, London</p><p class="cred">Chevening Award — UK Government</p><p class="cred">MDI — USFQ Quito</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
     </div>
     <div class="team-card reveal reveal-delay-1">
       <div class="team-photo"><div class="team-photo-inner tp-2"><img src="equipo/DARI.jpg" alt="Darío Pintado Cajamarca" class="team-img team-img-dari"></div><div class="team-line"></div></div>
       <p class="team-name">Darío Pintado Cajamarca</p>
-      <p class="team-role" data-es>Co-Fundador · Director Técnico</p><p class="team-role" data-en>Co-Founder · Technical Director</p>
-      <p class="team-bio" data-es>Especialista en dirección de proyectos, combina investigación arquitectónica con estrategia de negocio para crear proyectos de impacto real.</p>
-      <p class="team-bio" data-en>Specialist in project management, combines architectural research with business strategy to create real-impact projects.</p>
-      <div class="team-creds"><p class="cred">MBA — USFQ Quito</p><p class="cred">Bioconstrucción &amp; Eficiencia Energética</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
+      <p class="team-role" data-es>MDI Arch. · Gerente y Director Técnico</p><p class="team-role" data-en>MDI Arch. · Managing & Technical Director</p>
+      <p class="team-bio" data-es>Máster en dirección de proyectos. Integra arquitectura, estrategia y gestión técnica para convertir las ideas del estudio en propuestas viables, construibles y de impacto real.</p>
+      <p class="team-bio" data-en>Master's in project management. Integrates architecture, strategy, and technical management to turn the studio's ideas into viable, buildable, and real-impact proposals.</p>
+      <div class="team-creds"><p class="cred">MDI · Master's in Construction &amp; Real Estate Management — USFQ Quito</p><p class="cred">Bioconstrucción</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
     </div>
     <div class="team-card reveal reveal-delay-2">
       <div class="team-photo"><div class="team-photo-inner tp-3"><img src="equipo/MATI.jpg" alt="Matías Ávila Quezada" class="team-img team-img-mati"></div><div class="team-line"></div></div>
       <p class="team-name">Matías Ávila Quezada</p>
-      <p class="team-role" data-es>Director de Diseño</p><p class="team-role" data-en>Design Director</p>
-      <p class="team-bio" data-es>Especialista en diseño computacional y representación arquitectónica. Lidera la visión formal y visual de los proyectos del estudio, integrando procesos digitales, criterios espaciales y comunicación arquitectónica.</p>
-      <p class="team-bio" data-en>Specialist in computational design and architectural representation. Leads the formal and visual vision of the studio's projects, integrating digital processes, spatial criteria, and architectural communication.</p>
+      <p class="team-role" data-es>Arch. · Director de Diseño y Visualización</p><p class="team-role" data-en>Arch. · Design & Visualization Director</p>
+      <p class="team-bio" data-es>Especialista en diseño computacional y representación arquitectónica. Lidera la visualización de los proyectos del estudio, integrando procesos digitales, criterios espaciales y comunicación arquitectónica.</p>
+      <p class="team-bio" data-en>Specialist in computational design and architectural representation. Leads the visualization of the studio's projects, integrating digital processes, spatial criteria, and architectural communication.</p>
       <div class="team-creds"><p class="cred">Diseño Paramétrico &amp; Digital Fabrication</p><p class="cred">Arquitectura — Universidad de Cuenca</p></div>
     </div>
   </div>
@@ -621,12 +641,11 @@
           <label data-es>¿Qué te interesa?</label><label data-en>What are you interested in?</label>
           <select name="interes" required>
             <option value="" disabled selected>Selecciona una opción</option>
-            <option value="Caudales - Compra">Departamentos Caudales — Compra</option>
-            <option value="Caudales - Inversión">Departamentos Caudales — Inversión</option>
-            <option value="Proyecto de Arquitectura">Proyecto de Arquitectura</option>
-            <option value="Consultoría Sostenible">Consultoría Sostenible</option>
-            <option value="Proyecto Eco-Turístico">Proyecto Eco-Turístico</option>
-            <option value="Inversión / Alianza Estratégica">Inversión / Alianza Estratégica</option>
+            <option value="Caudales">Departamentos Caudales</option>
+            <option value="Arquitectura y Diseño">Arquitectura y Diseño</option>
+            <option value="Urbanismo y Desarrollo Sostenible">Urbanismo &amp; Desarrollo Sostenible</option>
+            <option value="Diseño Eco-Turístico y Ambiental">Diseño Eco-Turístico &amp; Ambiental</option>
+            <option value="Alianza Estratégica">Alianza Estratégica</option>
           </select>
         </div>
         <div class="form-group">
@@ -647,6 +666,8 @@
   <div class="footer-social">
     <a href="https://www.instagram.com/estromas/">Instagram</a>
     <a href="https://www.linkedin.com/company/estromas/">LinkedIn</a>
+    <a href="https://www.facebook.com/EstromasBioarquitectura/">Facebook</a>
+    <a href="https://www.tiktok.com/@estromas">TikTok</a>
     <a href="https://estromas.com/">estromas.com</a>
   </div>
 </footer>
@@ -675,6 +696,7 @@
   function closeAnnounce(){document.getElementById('announce').style.display='none';document.documentElement.style.setProperty('--announce-h','0px');}
   function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');const open=m.classList.toggle('open');h.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
   function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+  function preselect(val){setTimeout(()=>{const s=document.querySelector('select[name="interes"]');if(s)s.value=val;},100);}
   function setLang(lang){document.body.className='lang-'+lang;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===lang.toUpperCase()));document.querySelectorAll('.mobile-lang button').forEach((b,i)=>b.classList.toggle('active',(lang==='es'&&i===0)||(lang==='en'&&i===1)));}
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));

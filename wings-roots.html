@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Symbiosis — Estromas</title>
+<title>Wings & Roots — Estromas</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{--soil:#1C1A15;--bark:#2E2B22;--moss:#4A5240;--lichen:#7A8C6E;--stone:#B8B0A0;--cream:#F4F0E8;--gold:#C8A96E;--gold-light:#E8C98E;}
@@ -52,10 +52,6 @@
   .spec-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:.3rem;}
   .spec-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);}
   .proj-gallery{background:var(--soil);}
-  .gallery-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
-  .gp-1{background:linear-gradient(135deg,#1a2012,#2d3a20);}
-  .gp-2{background:linear-gradient(135deg,#12191a,#1f2e2e);}
-  .gp-3{background:linear-gradient(135deg,#1a1612,#2e2820);}
   .proj-process{background:var(--bark);}
   .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
   .process-step{padding:2.5rem;border:1px solid rgba(200,169,110,.1);position:relative;}
@@ -88,7 +84,24 @@
   .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}
   body.lang-en [data-es]{display:none;}body.lang-en [data-en]{display:block;}body.lang-es [data-en]{display:none;}body.lang-es [data-es]{display:block;}
   body.lang-en span[data-es]{display:none;}body.lang-en span[data-en]{display:inline;}body.lang-es span[data-en]{display:none;}body.lang-es span[data-es]{display:inline;}
-  @media(max-width:768px){nav{padding:.8rem 1.2rem;flex-wrap:nowrap;gap:.5rem;}.nav-logo{font-size:.75rem;letter-spacing:.12em;white-space:nowrap;flex-shrink:0;}.nav-back{font-size:.55rem;letter-spacing:.05em;gap:.4rem;flex-shrink:1;min-width:0;}.nav-back svg{flex-shrink:0;width:12px;height:12px;}.nav-back span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}.nav-lang{flex-shrink:0;}.proj-hero{padding:0 1.5rem 4rem;}.proj-section{padding:4rem 1.5rem;}.proj-desc-inner{grid-template-columns:1fr;gap:3rem;}.process-grid{grid-template-columns:1fr;}.tech-grid{grid-template-columns:1fr 1fr;}.proj-nav-inner{flex-direction:column;gap:2rem;text-align:center;}footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem;}}
+  @media(max-width:768px){
+    nav{padding:.8rem 1.2rem;flex-wrap:nowrap;gap:.5rem;}
+    .nav-logo{font-size:.75rem;letter-spacing:.12em;white-space:nowrap;flex-shrink:0;}
+    .nav-back{font-size:.55rem;letter-spacing:.05em;gap:.4rem;flex-shrink:1;min-width:0;}
+    .nav-back svg{flex-shrink:0;width:12px;height:12px;}
+    .nav-back span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .nav-lang{flex-shrink:0;}
+    .proj-hero{padding:0 1.5rem 4rem;height:70vh;}
+    .proj-title-wrap h1 .t1{font-size:clamp(1.8rem,7vw,3rem);}
+    .proj-title-wrap h1 .t2{font-size:clamp(1rem,4.5vw,1.8rem);}
+    .proj-section{padding:4rem 1.5rem;}
+    .proj-desc-inner{grid-template-columns:1fr;gap:3rem;}
+    .process-grid{grid-template-columns:1fr;}
+    .tech-grid{grid-template-columns:1fr 1fr;}
+    .proj-nav-inner{flex-direction:column;gap:2rem;text-align:center;}
+    .proj-nav-divider{width:60px;height:1px;}
+    footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem 1.5rem;}
+  }
 </style>
 </head>
 <body class="lang-es">
@@ -106,20 +119,22 @@
   📷 HERO — IMAGEN DE FONDO
   Cambia el src por tu imagen:
   ============================================ -->
-  <img src="proyectos\symbiosis\03_pasillo_bioclimatico.webp" class="proj-hero-img" onerror="this.style.display='none'">
+  <img src="proyectos/rooftop/09_render_final_2_monigote_flores.webp" class="proj-hero-img" onerror="this.style.display='none'">
   <div class="proj-hero-visual">
-      <path d="M200 300 Q400 100 600 300" stroke="#C8A96E" stroke-width="0.4" fill="none"/>
-      <path d="M180 300 Q400 80 620 300" stroke="#C8A96E" stroke-width="0.3" fill="none" opacity="0.5"/>
+    <svg viewBox="0 0 800 500" width="70%" fill="none" opacity="0.15">
+      <path d="M100 400 Q400 100 700 400" stroke="#C8A96E" stroke-width="0.5"/>
+      <path d="M150 400 Q400 150 650 400" stroke="#C8A96E" stroke-width="0.3" opacity="0.5"/>
+      <ellipse cx="400" cy="300" rx="200" ry="100" stroke="#C8A96E" stroke-width="0.3"/>
     </svg>
   </div>
   <div class="proj-hero-overlay"></div>
-  <p class="proj-eyebrow"><span data-es>Bioconstrucción · Bioparque Amaru · Cuenca</span><span data-en>Bioconstruction · Bioparque Amaru · Cuenca</span></p>
+  <p class="proj-eyebrow"><span data-es>Rooftop · Centro Histórico · Cuenca</span><span data-en>Rooftop · Historic Center · Cuenca</span></p>
   <div class="proj-title-wrap">
-    <h1><span class="t1">Symbiosis</span><span class="t2">experi(ence)ment</span></h1>
+    <h1><span class="t1">Wings &amp; Roots</span><span class="t2">páramo rooftop</span></h1>
     <div class="proj-meta-row">
-      <div class="proj-meta-item"><span class="proj-meta-label" data-es>Cliente</span><span class="proj-meta-label" data-en>Client</span><span class="proj-meta-val">Bioparque Amaru</span></div>
-      <div class="proj-meta-item"><span class="proj-meta-label">m²</span><span class="proj-meta-val">53 m²</span></div>
-      <div class="proj-meta-item"><span class="proj-meta-label" data-es>Estado</span><span class="proj-meta-label" data-en>Status</span><span class="proj-meta-val" data-es>Construido</span><span class="proj-meta-val" data-en>Built</span></div>
+      <div class="proj-meta-item"><span class="proj-meta-label" data-es>Cliente</span><span class="proj-meta-label" data-en>Client</span><span class="proj-meta-val">Solcuero</span></div>
+      <div class="proj-meta-item"><span class="proj-meta-label">m²</span><span class="proj-meta-val">250 m²</span></div>
+      <div class="proj-meta-item"><span class="proj-meta-label" data-es>Estado</span><span class="proj-meta-label" data-en>Status</span><span class="proj-meta-val" data-es>En desarrollo</span><span class="proj-meta-val" data-en>In development</span></div>
       <div class="proj-meta-item"><span class="proj-meta-label" data-es>Tipo</span><span class="proj-meta-label" data-en>Type</span><span class="proj-meta-val" data-es>Instalación</span><span class="proj-meta-val" data-en>Installation</span></div>
     </div>
   </div>
@@ -129,18 +144,18 @@
   <div class="proj-desc-inner">
     <div class="reveal">
       <p class="section-label"><span data-es>◆ El Proyecto</span><span data-en>◆ The Project</span></p>
-      <p data-es>Este proyecto presenta una cúpula irregular cuidadosamente diseñada para integrarse de manera natural con su entorno, fomentando una conexión armónica con el sitio y su vegetación. Mediante el uso de materiales locales y reciclados, junto con innovadores sistemas de tratamiento de aguas residuales desarrollados en colaboración con organismos naturales, el diseño minimiza el consumo de recursos, reduce costos y resalta la relación simbiótica entre el ser humano y el medio ambiente.</p>
-      <p data-en>This project features an irregular dome carefully designed to blend naturally with its surroundings, fostering a harmonious connection with the site and its vegetation. By using local and recycled materials, along with innovative wastewater treatment systems developed in collaboration with natural organisms, the design minimizes resource consumption, reduces costs, and highlights the symbiotic relationship between humans and the environment.</p>
-      <p data-es>La estructura utiliza tierra compactada, madera local y fibras naturales. El diseño de la cubierta imita la geometría de los nidos de aves del páramo local, generando una forma que funciona tanto como refugio humano como hábitat para otras especies.</p>
-      <p data-en>A shell-like structure — built primarily from earth, locally sourced wood, and glass — became the architectural response. Through close collaboration with biologists, the internal temperature and humidity were carefully regulated to meet the animals' needs. As a result, the living conditions and well-being of these creatures were significantly improved.</p>
+      <p data-es>Este proyecto propone reimaginar las cubiertas del Centro Histórico de Cuenca como nodos activos dentro de un corredor ecológico urbano. Inspirado en estudios que evidencian la presencia de fauna nativa adaptada a entornos densamente construidos, el diseño transforma una cubierta en un micro-ecosistema que se conecta con los parques, quebradas y patios verdes de la ciudad.</p>
+      <p data-en>This project proposes reimagining the rooftops of Cuenca's Historic Center as active nodes within an urban ecological corridor. Inspired by studies showing the presence of native fauna adapted to densely built environments, the design transforms a rooftop into a micro-ecosystem that connects with the city's parks, ravines, and green courtyards.</p>
+      <p data-es>Desarrollado como parte de un café en cubierta, integra especies vegetales andinas, refugios para fauna urbana y soluciones estructurales ligeras que promueven la biodiversidad, la restauración ecológica y una nueva forma de habitar en armonía con la naturaleza.</p>
+      <p data-en>Developed as part of a rooftop café, it integrates Andean plant species, shelters for urban wildlife, and lightweight structural solutions that promote biodiversity, ecological restoration, and a new way of living in harmony with nature.</p>
     </div>
     <div class="reveal reveal-delay-1">
       <p class="section-label"><span data-es>◆ Ficha Técnica</span><span data-en>◆ Technical Sheet</span></p>
       <div class="proj-specs-grid">
-        <div class="spec"><p class="spec-num">53</p><p class="spec-label">m²</p></div>
-        <div class="spec"><p class="spec-num">45%</p><p class="spec-label" data-es>Materiales locales</p><p class="spec-label" data-en>Local materials</p></div>
-        <div class="spec"><p class="spec-num">8+</p><p class="spec-label" data-es>Especies integradas</p><p class="spec-label" data-en>Integrated species</p></div>
-        <div class="spec"><p class="spec-num">35%</p><p class="spec-label" data-es>Materiales reciclados</p><p class="spec-label" data-en>Recycled materials</p></div>
+        <div class="spec"><p class="spec-num">250</p><p class="spec-label">m²</p></div>
+        <div class="spec"><p class="spec-num">30+</p><p class="spec-label" data-es>Especies vegetales nativas integradas</p><p class="spec-label" data-en>Native plant species integrated</p></div>
+        <div class="spec"><p class="spec-num">30+</p><p class="spec-label" data-es>Especies animales nativas integradas</p><p class="spec-label" data-en>Native animal species integrated</p></div>
+        <div class="spec"><p class="spec-num">30%</p><p class="spec-label" data-es>Ahorro por optimización de estructura</p><p class="spec-label" data-en>Savings from structural optimization</p></div>
       </div>
     </div>
   </div>
@@ -157,7 +172,7 @@
       ============================================ -->
       <div class="slide active">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/1708313578633.jpg" class="slide-img" alt="">
+          <img src="proyectos/rooftop/08_render_final_1_monigote_flores.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -167,7 +182,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/11_pasillo_organico_interior.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/PROPUESTA ANTES.png" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -177,7 +192,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/02_detalle_muro_organico.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/PROPUESTA RENDER 2.png" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -187,7 +202,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/08_bano_vermifiltro_interior.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/01_final_piramide_animales_terraza.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -197,7 +212,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/06_planta_arquitectonica.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/03_diagrama_pajaros_5.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -207,7 +222,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/10_bano_detalle_espanol.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/04_diagrama_pajaros_6.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -217,7 +232,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/01_bano_vermifiltro_boceto_ingles.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/07_plantas_pb_y_cubierta.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -227,7 +242,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/07_vermifiltro_toma_muestra.webp" class="slide-img" alt="">
+          <img src="proyectos/rooftop/05_estructura_wings_and_roots.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -237,17 +252,7 @@
       ============================================ -->
       <div class="slide">
         <div class="slide-frame">
-          <img src="proyectos/symbiosis/05_humedal_detalle.webp" class="slide-img" alt="">
-          <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
-        </div>
-      </div>
-
-      <!-- ============================================
-      📷 SLIDE 10 — cambia el src por tu imagen:
-      ============================================ -->
-      <div class="slide">
-        <div class="slide-frame">
-          <img src="proyectos/symbiosis/lombrices.png" class="slide-img" alt="">
+          <img src="proyectos/rooftop/06_pajaro_grande.webp" class="slide-img" alt="">
           <span class="zoom-icon" onclick="openLightbox(this.previousElementSibling)">⊕</span>
         </div>
       </div>
@@ -255,7 +260,7 @@
     </div>
 
     <div class="slide-controls">
-      <button class="slide-arrow prev" onclick="goToSlide((currentSlide-1+10)%10)">&#8592;</button>
+      <button class="slide-arrow prev" onclick="goToSlide((currentSlide-1+9)%9)">&#8592;</button>
       <button class="slide-dot active" onclick="goToSlide(0)"></button>
       <button class="slide-dot" onclick="goToSlide(1)"></button>
       <button class="slide-dot" onclick="goToSlide(2)"></button>
@@ -265,11 +270,10 @@
       <button class="slide-dot" onclick="goToSlide(6)"></button>
       <button class="slide-dot" onclick="goToSlide(7)"></button>
       <button class="slide-dot" onclick="goToSlide(8)"></button>
-      <button class="slide-dot" onclick="goToSlide(9)"></button>
-      <button class="slide-arrow next" onclick="goToSlide((currentSlide+1)%10)">&#8594;</button>
+      <button class="slide-arrow next" onclick="goToSlide((currentSlide+1)%9)">&#8594;</button>
     </div>
   </div>
-  <p class="slide-counter" id="slideCounter">1 / 10</p>
+  <p class="slide-counter" id="slideCounter">1 / 9</p>
 
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -328,28 +332,26 @@
   </script>
 </section>
 
-
-
 <section class="proj-section proj-process">
   <p class="section-label reveal"><span data-es>◆ Proceso de Diseño</span><span data-en>◆ Design Process</span></p>
   <div class="process-grid">
     <div class="process-step reveal">
       <p class="step-num">01</p>
-      <h3 class="step-title" data-es>Lectura del sitio vivo</h3><h3 class="step-title" data-en>Reading the living site</h3>
-      <p class="step-desc" data-es>Mapeo de la vegetación existente, la topografía y las condiciones naturales del lugar para definir una arquitectura que no borre el entorno, sino que lo incorpore. La forma del proyecto nace del respeto por los árboles, el terreno y la atmósfera del bioparque.</p>
-      <p class="step-desc" data-en>Mapping of existing vegetation, topography, and natural conditions to define an architecture that does not erase the environment, but incorporates it. The project's form is born from respect for the trees, terrain, and atmosphere of the biopark.</p>
+      <h3 class="step-title" data-es>Análisis patrimonial</h3><h3 class="step-title" data-en>Heritage analysis</h3>
+      <p class="step-desc" data-es>Estudio de la cubierta existente, cargas estructurales admisibles y condiciones microclimáticas de altura en el Centro Histórico para definir una intervención reversible y de mínimo impacto sobre la estructura patrimonial.</p>
+      <p class="step-desc" data-en>Study of the existing roof, admissible structural loads, and high-altitude microclimatic conditions in the Historic Center to define a reversible intervention with minimal impact on the heritage structure.</p>
     </div>
     <div class="process-step reveal reveal-delay-1">
       <p class="step-num">02</p>
-      <h3 class="step-title" data-es>Bioconstrucción experimental</h3><h3 class="step-title" data-en>Experimental bioconstruction</h3>
-      <p class="step-desc" data-es>Construcción con madera del sitio, tierra, ramas, malla y materiales reciclados, incluyendo botellas plásticas recolectadas en el bioparque. La estructura se concibe como una cueva orgánica que reduce recursos, aprovecha saberes artesanales y se integra visualmente al paisaje.</p>
-      <p class="step-desc" data-en>Construction with on-site wood, earth, branches, mesh, and recycled materials — including plastic bottles collected at the biopark. The structure is conceived as an organic cave that reduces resources, draws on artisanal knowledge, and integrates visually into the landscape.</p>
+      <h3 class="step-title" data-es>Diseño del ecosistema</h3><h3 class="step-title" data-en>Ecosystem design</h3>
+      <p class="step-desc" data-es>Selección y disposición de especies nativas del páramo en función de sus necesidades hídricas, lumínicas y de sustrato. Diseño de un sistema de captación de agua de niebla integrado a la estructura de madera.</p>
+      <p class="step-desc" data-en>Selection and arrangement of native páramo species based on their water, light, and substrate needs. Design of a fog water harvesting system integrated into the timber structure.</p>
     </div>
     <div class="process-step reveal reveal-delay-2">
       <p class="step-num">03</p>
-      <h3 class="step-title" data-es>Sistemas simbióticos</h3><h3 class="step-title" data-en>Symbiotic systems</h3>
-      <p class="step-desc" data-es>Integración de un vermifiltro y un humedal artificial para tratar las aguas residuales mediante lombrices, plantas acuáticas y microorganismos. El baño deja de ser solo infraestructura y se convierte en un sistema vivo que transforma residuos en compost y agua apta para riego.</p>
-      <p class="step-desc" data-en>Integration of a vermifilter and an artificial wetland to treat wastewater using worms, aquatic plants, and microorganisms. The bathroom ceases to be mere infrastructure and becomes a living system that transforms waste into compost and water suitable for irrigation.</p>
+      <h3 class="step-title" data-es>Construcción ligera</h3><h3 class="step-title" data-en>Lightweight construction</h3>
+      <p class="step-desc" data-es>Sistema estructural en madera de eucalipto rollizo con uniones artesanales. Sustrato liviano de pumita volcánica para reducir cargas sobre la losa existente y favorecer el drenaje y la aireación de las raíces.</p>
+      <p class="step-desc" data-en>Structural system in round eucalyptus timber with artisanal joints. Lightweight volcanic pumice substrate to reduce loads on the existing slab and promote root drainage and aeration.</p>
     </div>
   </div>
 </section>
@@ -357,25 +359,25 @@
 <section class="proj-section proj-tech">
   <p class="section-label reveal"><span data-es>◆ Materiales</span><span data-en>◆ Materials</span></p>
   <div class="tech-grid reveal">
-    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Tierra compactada</p><p class="tech-name" data-en>Compacted earth</p><p class="tech-detail" data-es>Extraída del sitio de construcción</p><p class="tech-detail" data-en>Extracted from the construction site</p></div>
-    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Madera local</p><p class="tech-name" data-en>Local timber</p><p class="tech-detail" data-es>Eucalipto rollizo de la región andina</p><p class="tech-detail" data-en>Round eucalyptus from the Andean region</p></div>
-    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Botellas recicladas</p><p class="tech-name" data-en>Recycled bottles</p><p class="tech-detail" data-es>Integradas como módulos constructivos en muros y cubierta</p><p class="tech-detail" data-en>Integrated as construction modules in walls and roof</p></div>
-    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Plantas nativas</p><p class="tech-name" data-en>Native plants</p><p class="tech-detail" data-es>8 especies nativas integradas al diseño</p><p class="tech-detail" data-en>8 native species integrated into the design</p></div>
+    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Estructura metálica curva</p><p class="tech-name" data-en>Curved metal structure</p><p class="tech-detail" data-es>Elementos delgados en patrón entretejido para rigidez estructural con mínimo material</p><p class="tech-detail" data-en>Thin elements in woven pattern for structural rigidity with minimal material use</p></div>
+    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Soporte vegetal integrado</p><p class="tech-name" data-en>Integrated plant support</p><p class="tech-detail" data-es>La estructura actúa como soporte directo para el crecimiento vegetal sin dispositivos adicionales</p><p class="tech-detail" data-en>Structure acts as direct support for plant growth without additional shading devices</p></div>
+    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Cerámica tradicional</p><p class="tech-name" data-en>Traditional ceramic</p><p class="tech-detail" data-es>Quinta fachada en materiales cerámicos que dialoga con el patrimonio del Centro Histórico</p><p class="tech-detail" data-en>Fifth façade in ceramic materials in dialogue with the Historic Center's heritage</p></div>
+    <div class="tech-item"><div class="tech-icon">◈</div><p class="tech-name" data-es>Alta transparencia</p><p class="tech-name" data-en>High transparency</p><p class="tech-detail" data-es>Diseño ligero que maximiza la visibilidad y la relación visual con el entorno urbano</p><p class="tech-detail" data-en>Lightweight design that maximizes visibility and visual connection with the urban environment</p></div>
   </div>
 </section>
 
 <div class="proj-nav">
   <div class="proj-nav-inner">
-    <a href="caudales.html" class="proj-nav-link"><span class="proj-nav-dir" data-es>← Proyecto anterior</span><span class="proj-nav-dir" data-en>← Previous project</span><span class="proj-nav-name">Caudales</span></a>
+    <a href="testudines.html" class="proj-nav-link"><span class="proj-nav-dir" data-es>← Proyecto anterior</span><span class="proj-nav-dir" data-en>← Previous project</span><span class="proj-nav-name">Testudines</span></a>
     <div class="proj-nav-divider"></div>
-    <a href="testudines.html" class="proj-nav-link" style="text-align:right;"><span class="proj-nav-dir" data-es>Siguiente proyecto →</span><span class="proj-nav-dir" data-en>Next project →</span><span class="proj-nav-name">Testudines</span></a>
+    <a href="index.html#proyectos" class="proj-nav-link" style="text-align:right;"><span class="proj-nav-dir" data-es>Ver todos →</span><span class="proj-nav-dir" data-en>All projects →</span><span class="proj-nav-name">Proyectos</span></a>
   </div>
 </div>
 
 <footer>
   <p class="footer-logo">ESTROMAS</p>
   <p class="footer-copy">© 2026 Estromas. Cuenca, Ecuador.</p>
-  <div class="footer-social"><a href="https://www.instagram.com/estromas/">Instagram</a><a href="https://www.linkedin.com/company/estromas/">LinkedIn</a><a href="https://www.facebook.com/EstromasBioarquitectura/">Facebook</a><a href="https://www.tiktok.com/@estromas">TikTok</a><a href="index.html">estromas.com</a></div>
+  <div class="footer-social"><a href="https://www.instagram.com/estromas/">Instagram</a><a href="https://www.linkedin.com/company/estromas/">LinkedIn</a><a href="index.html">estromas.com</a></div>
 </footer>
 <script>
   const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
